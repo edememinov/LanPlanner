@@ -11,8 +11,8 @@ using System;
 namespace PlannerLanParty.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180415223000_Initial Migration")]
-    partial class InitialMigration
+    [Migration("20180421002228_Initial migration")]
+    partial class Initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -188,6 +188,22 @@ namespace PlannerLanParty.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("PlannerLanParty.Models.AttendeesDate", b =>
+                {
+                    b.Property<int>("AtteendeesDateID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AttendeeID");
+
+                    b.Property<int>("DateID");
+
+                    b.Property<int>("LanPartyID");
+
+                    b.HasKey("AtteendeesDateID");
+
+                    b.ToTable("AttendeesDates");
+                });
+
             modelBuilder.Entity("PlannerLanParty.Models.LanPartyConcept", b =>
                 {
                     b.Property<int>("LanPartyID")
@@ -216,8 +232,6 @@ namespace PlannerLanParty.Migrations
                     b.Property<int>("LanPartyID");
 
                     b.HasKey("DateID");
-
-                    b.HasIndex("LanPartyID");
 
                     b.ToTable("LanPartyDates");
                 });
@@ -294,14 +308,6 @@ namespace PlannerLanParty.Migrations
                     b.HasOne("PlannerLanParty.Models.LanPartyFinal")
                         .WithMany("Attendees")
                         .HasForeignKey("LanPartyFinalLanPartyID");
-                });
-
-            modelBuilder.Entity("PlannerLanParty.Models.LanPartyDate", b =>
-                {
-                    b.HasOne("PlannerLanParty.Models.LanPartyConcept")
-                        .WithMany("LanPartyConceptDates")
-                        .HasForeignKey("LanPartyID")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

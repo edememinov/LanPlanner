@@ -27,14 +27,17 @@ namespace PlannerLanParty.Models
     {
         [Key]
         public int DateID { get; set; }
+        [DataType(DataType.DateTime)]
         public DateTime DateTimeStart { get; set; }
+        [DataType(DataType.DateTime)]
         public DateTime DateTimeFinish { get; set; }
 
         public int LanPartyID { get; set; }
-
         [NotMapped]
-        public bool? CheckkBoxAnswer { get; set; }
+        public bool CheckBoxAnswer { get; set; }
+
     }
+
 
     public class AttendeesDate
     {

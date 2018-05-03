@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace PlannerLanParty.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class Initialmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -21,6 +21,21 @@ namespace PlannerLanParty.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AttendeesDates",
+                columns: table => new
+                {
+                    AtteendeesDateID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AttendeeID = table.Column<string>(nullable: true),
+                    DateID = table.Column<int>(nullable: false),
+                    LanPartyID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AttendeesDates", x => x.AtteendeesDateID);
                 });
 
             migrationBuilder.CreateTable(
@@ -52,6 +67,21 @@ namespace PlannerLanParty.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_LanPartyConcept", x => x.LanPartyID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LanPartyDates",
+                columns: table => new
+                {
+                    DateID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    DateTimeFinish = table.Column<DateTime>(nullable: false),
+                    DateTimeStart = table.Column<DateTime>(nullable: false),
+                    LanPartyID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LanPartyDates", x => x.DateID);
                 });
 
             migrationBuilder.CreateTable(
@@ -112,27 +142,6 @@ namespace PlannerLanParty.Migrations
                         principalTable: "LanParties",
                         principalColumn: "LanPartyID",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "LanPartyDates",
-                columns: table => new
-                {
-                    DateID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    DateTimeFinish = table.Column<DateTime>(nullable: false),
-                    DateTimeStart = table.Column<DateTime>(nullable: false),
-                    LanPartyID = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LanPartyDates", x => x.DateID);
-                    table.ForeignKey(
-                        name: "FK_LanPartyDates_LanPartyConcept_LanPartyID",
-                        column: x => x.LanPartyID,
-                        principalTable: "LanPartyConcept",
-                        principalColumn: "LanPartyID",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -268,11 +277,6 @@ namespace PlannerLanParty.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LanPartyDates_LanPartyID",
-                table: "LanPartyDates",
-                column: "LanPartyID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -291,6 +295,9 @@ namespace PlannerLanParty.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "AttendeesDates");
 
             migrationBuilder.DropTable(
                 name: "LanPartyDates");

@@ -29,5 +29,7 @@ namespace PlannerLanParty.Data
         public DbSet<LanPartyDate> LanPartyDates { get; set; }
         public DbSet<AttendeesDate> AttendeesDates { get; set; }
 
+
+
     }
 }
