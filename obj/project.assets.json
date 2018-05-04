@@ -5030,7 +5030,7 @@
         }
       }
     },
-    ".NETCoreApp,Version=v2.0/linux-arm": {
+    ".NETCoreApp,Version=v2.0/ubuntu.16.04-arm": {
       "Libuv/1.10.0": {
         "type": "package",
         "dependencies": {
@@ -19248,7 +19248,7 @@
       }
     },
     "runtimes": {
-      "linux-arm": {
+      "ubuntu.16.04-arm": {
         "#import": []
       }
     }
