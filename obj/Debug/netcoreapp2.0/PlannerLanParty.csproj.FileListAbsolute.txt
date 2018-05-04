@@ -9,4 +9,3 @@ C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\obj\Debug\netcoreapp2
 C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\obj\Debug\netcoreapp2.0\PlannerLanParty.AssemblyInfo.cs
 C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\obj\Debug\netcoreapp2.0\PlannerLanParty.dll
 C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\obj\Debug\netcoreapp2.0\PlannerLanParty.pdb
-C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\obj\Debug\netcoreapp2.0\PlannerLanParty.csprojResolveAssemblyReference.cache
