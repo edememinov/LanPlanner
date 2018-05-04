@@ -3,6 +3,7 @@ C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\bin\Debug\netcoreapp2
 C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\bin\Debug\netcoreapp2.0\PlannerLanParty.runtimeconfig.dev.json
 C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\bin\Debug\netcoreapp2.0\PlannerLanParty.dll
 C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\bin\Debug\netcoreapp2.0\PlannerLanParty.pdb
+C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\obj\Debug\netcoreapp2.0\PlannerLanParty.csprojResolveAssemblyReference.cache
 C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\obj\Debug\netcoreapp2.0\PlannerLanParty.csproj.CoreCompileInputs.cache
 C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
 C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\obj\Debug\netcoreapp2.0\PlannerLanParty.AssemblyInfoInputs.cache
