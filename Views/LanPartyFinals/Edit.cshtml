@@ -1,0 +1,49 @@
+﻿@model PlannerLanParty.Models.LanPartyFinal
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>LanPartyFinal</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="LanPartyFinalDate" class="control-label"></label>
+                <input asp-for="LanPartyFinalDate" class="form-control" />
+                <span asp-validation-for="LanPartyFinalDate" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="LanPartyID" />
+            <div class="form-group">
+                <label asp-for="LanPartyName" class="control-label"></label>
+                <input asp-for="LanPartyName" class="form-control" />
+                <span asp-validation-for="LanPartyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LanPartyPlace" class="control-label"></label>
+                <input asp-for="LanPartyPlace" class="form-control" />
+                <span asp-validation-for="LanPartyPlace" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LanPartyAddress" class="control-label"></label>
+                <input asp-for="LanPartyAddress" class="form-control" />
+                <span asp-validation-for="LanPartyAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

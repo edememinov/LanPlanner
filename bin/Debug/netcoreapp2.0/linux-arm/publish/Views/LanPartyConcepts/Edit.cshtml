@@ -1,0 +1,165 @@
+﻿@model PlannerLanParty.Models.ConceptLanViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>LanPartyConcept</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="LanPartyConcept.LanPartyID" />
+            <div class="form-group">
+                <label asp-for="LanPartyConcept.LanPartyName" class="control-label"></label>
+                <input asp-for="LanPartyConcept.LanPartyName" class="form-control" />
+                <span asp-validation-for="LanPartyConcept.LanPartyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LanPartyConcept.LanPartyPlace" class="control-label"></label>
+                <input asp-for="LanPartyConcept.LanPartyPlace" class="form-control" />
+                <span asp-validation-for="LanPartyConcept.LanPartyPlace" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LanPartyConcept.LanPartyAddress" class="control-label"></label>
+                <input asp-for="LanPartyConcept.LanPartyAddress" class="form-control" />
+                <span asp-validation-for="LanPartyConcept.LanPartyAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <fieldset class="form-add-set">
+                    <label for="sets" class="col-md-2 control-label">Dates</label>
+                    <div class="col-md-10">
+                        <div class="concept-dates">
+                            <div class="add-sets">
+                                <div class="form-inline add-set">
+
+                                    @{var counter = 0; }
+
+                                    @for(int i = 0; i < Model.LanPartyDates.Count(); i++)
+
+                                    {
+                                        <div class="form-group">
+                                            <input type="hidden" asp-for="@Model.LanPartyDates[i].DateID" hidden="hidden">
+                                        </div>
+
+
+
+                                        <div class="form-group">
+                                            <label asp-for="@Model.LanPartyDates[i].DateTimeStart" class="control-label"></label>
+                                            <input asp-for="@Model.LanPartyDates[i].DateTimeStart" id="LanPartyDates_@counter __DateTimeStart" class="form-control" onchange="checkDates()" />
+                                            <span asp-validation-for="@Model.LanPartyDates[i].DateTimeStart" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label asp-for="@Model.LanPartyDates[i].DateTimeFinish" class="control-label"></label>
+                                            <input asp-for="@Model.LanPartyDates[i].DateTimeFinish" id="LanPartyDates_@counter __DateTimeFinish" class="form-control" onchange="checkDates()" />
+                                            <span asp-validation-for="@Model.LanPartyDates[i].DateTimeFinish" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="btn btn-remove-set" data-toggle="tooltip" title="Remove Set"><span class="glyphicon glyphicon-minus"></span></button>
+                                        </div>
+
+
+
+
+
+
+                                        counter++;
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-add-set">Add Set</button>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".btn-add-set").click(function (e) {
+                var itemIndex = $(".add-set").length;
+                e.preventDefault();
+                var newItem = $("<div class='form-inline add-set'>" +
+                    "<div class='form-group'>" +
+                    "<label name='DateTimeStart' class='control-label'>Start date</label>" +
+                    "<input type='datetime-local' id='LanPartyDates_" + itemIndex + "__DateTimeStart' name='LanPartyDates[" + itemIndex + "].DateTimeStart' class='form-control'onchange='checkDates()' />" +
+                    "<span class='text-danger field-validation-valid' data-valmsg-for='DateTimeStart' data-valmsg-replace='true'></span>" +
+                    "</div>" +
+                    "<div class='form-group'>" +
+                    "<label name='DateTimeStart' class='control-label'>End date</label>" +
+                    "<input type='datetime-local' id='LanPartyDates_" + itemIndex + "__DateTimeFinish' name='LanPartyDates[" + itemIndex + "].DateTimeFinish' class='form-control' onchange='checkDates()'/>" +
+                    "<span class='text-danger field-validation-valid' data-valmsg-for='DateTimeFinish' data-valmsg-replace='true'></span>" +
+                    "</div>" +
+                    "<div class='form-group'>" +
+                    "<button class='btn btn-remove-set' type='button' data-toggle='tooltip' title='Remove Set'><span class='glyphicon glyphicon-minus'></span></button>" +
+                    "</div>" +
+                    "</div>");
+                $('.add-set .btn-remove-set').show();
+                $(".add-sets").append(newItem);
+            });
+
+            $(document).on('click', '.add-set .btn-remove-set', function (e) {
+                e.preventDefault();
+                $(this).parents('.add-set').remove();
+
+                removeButton();
+            });
+
+
+            function removeButton() {
+                if ($('.add-set').length == 1) {
+                    $('.add-set .btn-remove-set').hide();
+                }
+            }
+
+
+
+        });
+    </script>
+
+    <script>
+        function checkDates() {
+            var sumDates = $('.add-set').length;
+            console.log(sumDates);
+            var i;
+            for (i = 1; i < sumDates; i++) {
+
+                var start = document.getElementById("LanPartyDates_" + i + "__DateTimeStart").value;
+                var end = document.getElementById("LanPartyDates_" + i + "__DateTimeFinish").value;
+
+                if (start >= end) {
+                    document.getElementById("LanPartyDates_" + i + "__DateTimeFinish").style.color = "red";
+                    $('.btn-primary').hide();
+                }
+                else {
+                    document.getElementById("LanPartyDates_" + i + "__DateTimeFinish").style.color = "";
+                    $('.btn-primary').show();
+
+                }
+
+
+            }
+
+        }
+    </script>
+
+}

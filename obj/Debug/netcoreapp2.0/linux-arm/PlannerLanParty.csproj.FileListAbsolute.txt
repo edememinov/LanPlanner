@@ -1,0 +1,14 @@
+C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\bin\Debug\netcoreapp2.0\linux-arm\libhostpolicy.so
+C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\bin\Debug\netcoreapp2.0\linux-arm\libhostfxr.so
+C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\bin\Debug\netcoreapp2.0\linux-arm\PlannerLanParty
+C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\bin\Debug\netcoreapp2.0\linux-arm\PlannerLanParty.deps.json
+C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\bin\Debug\netcoreapp2.0\linux-arm\PlannerLanParty.runtimeconfig.json
+C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\bin\Debug\netcoreapp2.0\linux-arm\PlannerLanParty.runtimeconfig.dev.json
+C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\bin\Debug\netcoreapp2.0\linux-arm\PlannerLanParty.dll
+C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\bin\Debug\netcoreapp2.0\linux-arm\PlannerLanParty.pdb
+C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\obj\Debug\netcoreapp2.0\linux-arm\PlannerLanParty.csproj.CoreCompileInputs.cache
+C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\obj\Debug\netcoreapp2.0\linux-arm\UserSecretsAssemblyInfo.cs
+C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\obj\Debug\netcoreapp2.0\linux-arm\PlannerLanParty.AssemblyInfoInputs.cache
+C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\obj\Debug\netcoreapp2.0\linux-arm\PlannerLanParty.AssemblyInfo.cs
+C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\obj\Debug\netcoreapp2.0\linux-arm\PlannerLanParty.dll
+C:\Users\Edem\source\repos\PlannerLanParty\PlannerLanParty\obj\Debug\netcoreapp2.0\linux-arm\PlannerLanParty.pdb

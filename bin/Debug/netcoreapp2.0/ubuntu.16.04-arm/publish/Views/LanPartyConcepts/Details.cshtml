@@ -1,0 +1,59 @@
+﻿@model PlannerLanParty.Models.ConceptLanViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LanPartyConcept</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LanPartyConcept.LanPartyName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LanPartyConcept.LanPartyName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LanPartyConcept.LanPartyPlace)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LanPartyConcept.LanPartyPlace)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LanPartyConcept.LanPartyAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LanPartyConcept.LanPartyAddress)
+        </dd>
+        @foreach (var item in Model.ConceptDates)
+        {
+            
+
+            <dt>
+                @Html.DisplayNameFor(modelItem => item.DateTimeStart)
+
+            </dt>
+            <dd>
+                @Html.DisplayFor(modelItem => item.DateTimeStart)
+
+            </dd>
+            <dt>
+
+                @Html.DisplayNameFor(modelItem => item.DateTimeFinish)
+
+            </dt>
+            <dd>
+                @Html.DisplayFor(modelItem => item.DateTimeFinish)
+
+            </dd>
+        }
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.LanPartyConcept.LanPartyID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
