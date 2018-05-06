@@ -36,6 +36,26 @@
     padding: 16px;
 }
 
+.navbar {
+    background-color: #007FFF;
+}
+
+.navbar-brand {
+    color: black !important
+}
+
+.navbar-brand:hover {
+    color: white !important
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: black;
+}
+
+.navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a:hover {
+    color: white;
+}
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */
