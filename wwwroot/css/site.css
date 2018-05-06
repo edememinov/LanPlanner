@@ -36,8 +36,10 @@
     padding: 16px;
 }
 
+
+
 .navbar {
-    background-color: #007FFF;
+    background: linear-gradient(to bottom right, #003366, #33ccff);
 }
 
 .navbar-brand {
