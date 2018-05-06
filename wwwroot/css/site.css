@@ -36,6 +36,36 @@
     padding: 16px;
 }
 
+.navbar {
+    background-color: #993366;
+}
+
+.navbar-brand {
+    color: black !important
+}
+
+    .navbar-brand:hover {
+        color: white !important
+    }
+
+.navbar-inverse .navbar-nav > li > a {
+    color: black;
+}
+
+.navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a:hover {
+    color: white;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */
