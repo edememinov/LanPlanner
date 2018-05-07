@@ -72,4 +72,13 @@
     .carousel-caption {
         display: none;
     }
+    .col-container {
+        display: block;
+    }
+    .col {
+        flex: 0;
+        padding: 0;
+        width: 100%;
+    }
+
 }
