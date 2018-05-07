@@ -34,112 +34,106 @@
                 <input type="hidden" name="LanPartyConceptDates[0].DateID">
             </div>
         </div>
-        <div class="col-xs-12 col-container">
+        <div class="col-xs-12">
+            <div class="col-container" id="datelist">
 
-            @{var counter = 0; }
 
-            @for (int i = 0; i < Model.LanPartyDates.Count(); i++)
+                @{var counter = 0; }
 
-            {
-                var counterplus = counter + 1;
-                <div class="col col-xs-4 col-xs-offset-2" style="border:solid black 2px; border-radius: 2%;">
-                    <div class="col-xs-12">
-                        <input type="hidden" asp-for="@Model.LanPartyDates[i].DateID" hidden="hidden">
-                    </div>
-                    @{
-                        if (Model.Attendees != null)
-                        {
-                            var currentUser = Model.Attendees.ToList().Where(x => x.Id == Model.CurrentUser.Id).FirstOrDefault();
-                            if (!Model.Attendees.Contains(currentUser))
+                @for (int i = 0; i < Model.LanPartyDates.Count(); i++)
+
+                {
+                    var counterplus = counter + 1;
+
+                    <div class="col col-xs-4 col-xs-offset-2 top-space" style="border:solid black 2px; border-radius: 2%;" id="date_@i">
+                        <div class="col-xs-12">
+                            <input type="hidden" asp-for="@Model.LanPartyDates[i].DateID" hidden="hidden">
+                        </div>
+                        @{
+                            if (Model.Attendees != null)
+                            {
+                                var currentUser = Model.Attendees.ToList().Where(x => x.Id == Model.CurrentUser.Id).FirstOrDefault();
+                                if (!Model.Attendees.Contains(currentUser))
+                                {
+                                    <div class="col-xs-12">
+                                        <input type="checkbox" asp-for="@Model.LanPartyDates[i].CheckBoxAnswer" />
+                                        <label>@Model.LanPartyDates[i].DateTimeStart - @Model.LanPartyDates[i].DateTimeFinish</label>
+                                    </div>
+
+                                }
+
+                            }
+                            else
                             {
                                 <div class="col-xs-12">
                                     <input type="checkbox" asp-for="@Model.LanPartyDates[i].CheckBoxAnswer" />
-                                    <label>@Model.LanPartyDates[i].DateTimeStart - @Model.LanPartyDates[i].DateTimeFinish</label>
+                                    <label>@counterplus</label>
                                 </div>
 
                             }
-                      
+
                         }
-                        else
+                        <div class="col-xs-12">
+                            <label asp-for="@Model.LanPartyDates[i].DateTimeStart" class="control-label"></label>
+                            <input asp-for="@Model.LanPartyDates[i].DateTimeStart" id="LanPartyDates_@counter __DateTimeStart" class="form-control" disabled="disabled" />
+                            <span asp-validation-for="@Model.LanPartyDates[i].DateTimeStart" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-xs-12">
+                            <label asp-for="@Model.LanPartyDates[i].DateTimeFinish" class="control-label"></label>
+                            <input asp-for="@Model.LanPartyDates[i].DateTimeFinish" id="LanPartyDates_@counter __DateTimeFinish" class="form-control" disabled="disabled" />
+                            <span asp-validation-for="@Model.LanPartyDates[i].DateTimeFinish" class="text-danger"></span>
+                        </div>
+
+
+
+                        <div id="user_count_@i">
+                            <label>These users chose this date:</label>
+                            @if (Model.Attendees != null)
+                            {
+
+                                @foreach (var attendeedate in Model.AttendeesDates)
+                                {
+                                    var user = Model.Attendees.ToList().Where(x => x.Id == attendeedate.AttendeeID).FirstOrDefault();
+
+                                    if (attendeedate.DateID == Model.LanPartyDates[i].DateID)
+                                    {
+                                        <input asp-for="@user.Email" class="form-control" disabled="disabled" />
+
+                                    }
+                                }
+                            }
+
+                        </div>
+                    </div>
+
+
+                    counter++;
+                }
+                @{
+
+                    if (Model.Attendees != null)
+                    {
+                        var currentUser = Model.Attendees.ToList().Where(x => x.Id == Model.CurrentUser.Id).FirstOrDefault();
+
+
+                        if (!Model.Attendees.Contains(currentUser))
                         {
-                            <div class="col-xs-12">
-                                <input type="checkbox" asp-for="@Model.LanPartyDates[i].CheckBoxAnswer" />
-                                <label>@counterplus</label>
+                            <div class="col-xs-12 ">
+                                <input type="submit" value="Save" class="btn btn-default" />
                             </div>
 
                         }
-
                     }
-                    <div class="col-xs-12">
-                        <label asp-for="@Model.LanPartyDates[i].DateTimeStart" class="control-label"></label>
-                        <input asp-for="@Model.LanPartyDates[i].DateTimeStart" id="LanPartyDates_@counter __DateTimeStart" class="form-control" disabled="disabled" />
-                        <span asp-validation-for="@Model.LanPartyDates[i].DateTimeStart" class="text-danger"></span>
-                    </div>
-
-                    <div class="col-xs-12">
-                        <label asp-for="@Model.LanPartyDates[i].DateTimeFinish" class="control-label"></label>
-                        <input asp-for="@Model.LanPartyDates[i].DateTimeFinish" id="LanPartyDates_@counter __DateTimeFinish" class="form-control" disabled="disabled" />
-                        <span asp-validation-for="@Model.LanPartyDates[i].DateTimeFinish" class="text-danger"></span>
-                    </div>
-
-
-
-                    <div>
-                        <label>These users chose this date:</label>
-                        @if (Model.Attendees != null)
-                        {
-
-                            @foreach (var user in Model.Attendees)
-                            {
-                                var attendeedate = Model.AttendeesDates.ToList().Where(x => x.AttendeeID == user.Id).FirstOrDefault();
-
-                                if (attendeedate.DateID == Model.LanPartyDates[i].DateID)
-                                {
-                                    <input asp-for="@user.Email" class="form-control" disabled="disabled" />
-
-                                }
-                            }
-                        }
-
-
-
-
-
-                    </div>
-
-                </div>
-
-
-            }
-            @{
-                counter++;
-                if (Model.Attendees != null)
-                {
-                    var currentUser = Model.Attendees.ToList().Where(x => x.Id == Model.CurrentUser.Id).FirstOrDefault();
-
-
-                    if (!Model.Attendees.Contains(currentUser))
+                    else
                     {
+
                         <div class="col-xs-12 ">
                             <input type="submit" value="Save" class="btn btn-default" />
                         </div>
-
                     }
                 }
-                else
-                {
-
-                    <div class="col-xs-12 ">
-                        <input type="submit" value="Save" class="btn btn-default" />
-                    </div>
-                }
-            }
-
-
-
-
-
-
+            </div>
         </div>
     </form>
 
@@ -151,6 +145,38 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        var element = document.getElementById("datelist");
+        var list = [];
+        var elementcount = element.childElementCount;
+        for (var c = 0; c < elementcount; c++) {
+            var elementName = "user_count_" + c;
+            var elementDate = document.getElementById(elementName);
+            var dateElementCount = elementDate.childElementCount;
+
+
+            list.push({ name: elementName, nr: dateElementCount });
+
+        }
+
+        var largest = Math.max.apply(Math, list.map(function (o) { return o.nr; }))
+        var least = Math.min.apply(Math, list.map(function (o) { return o.nr; }))
+        var nameslistmax = list.filter(x => x.nr == largest);
+        var nameslistmin = list.filter(x => x.nr == least);
+
+        for (var x = 0; x < nameslistmax.length; x++) {
+            var num = nameslistmax[x].name.replace(/^\D+/g, '');
+            finalelementname = "date_" + num
+            document.getElementById(finalelementname).style.borderColor = "green";
+        }
+        for (var x = 0; x < nameslistmin.length; x++) {
+            var num = nameslistmin[x].name.replace(/^\D+/g, '');
+            finalelementname = "date_" + num
+            document.getElementById(finalelementname).style.borderColor = "red";
+        }
+
+    </script>
 
 
 }

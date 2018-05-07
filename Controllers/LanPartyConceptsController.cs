@@ -120,7 +120,7 @@ namespace PlannerLanParty.Controllers
                 return NotFound();
             }
             await _context.SaveChangesAsync();
-            return View(lanPartyConceptViewModel);
+            return RedirectToAction(nameof(Index));
         }
         [Authorize]
         // GET: LanPartyConcepts/Create

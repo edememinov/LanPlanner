@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    width: 100%;
 }
 
 /* Wrapping element */
@@ -28,7 +29,12 @@
 
 .col-container {
     display: flex;
-    width: 100%;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.top-space{
+    margin-top: 1%;
 }
 
 .col {
