@@ -46,6 +46,13 @@
                                     <li><a class="submenu_a" tabindex="-1" asp-area="" asp-controller="LanPartyConcepts" asp-action="Index">Concept Lan Parties</a></li>
                                 </ul>
                             </li>
+                            <li class="dropdown-submenu">
+                                <a class="test" tabindex="-1" href="#">Games &amp; Tournaments <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="submenu_a" tabindex="-1" asp-area="" asp-controller="Games" asp-action="Index">Games</a></li>
+                                    <li><a class="submenu_a" tabindex="-1" asp-area="" asp-controller="Tournaments" asp-action="Index">Tournaments</a></li>
+                                </ul>
+                            </li>
                         </ul>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")

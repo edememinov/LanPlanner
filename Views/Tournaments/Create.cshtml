@@ -1,0 +1,108 @@
+﻿@model PlannerLanParty.Models.TournamentViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Tournament</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Tournament.TournamentName" class="control-label"></label>
+                <input asp-for="Tournament.TournamentName" class="form-control" />
+                <span asp-validation-for="Tournament.TournamentName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+
+            <div class="form-group">
+                <fieldset class="form-add-set">
+                    <label for="sets" class="col-md-2 control-label">Dates</label>
+                    <div class="col-md-10">
+                        <div class="concept-dates">
+                            <div class="add-sets">
+                                <div class="form-inline add-set">
+                                    <div class="form-group">
+
+
+                                    </div>
+
+                                    @*For loop and a dropdown for games, then add this to the Js.*@
+                                    <div class="form-group">
+                                        <label asp-for="GamesList[0].GameName" class="control-label">Start Date</label>
+                                        <input asp-for="GamesList[0].GameName" class="form-control" onchange="checkDates()" />
+                                        <span asp-validation-for="GamesList[0].GameName" class="text-danger" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button class="btn btn-remove-set" data-toggle="tooltip" title="Remove Set"><span class="glyphicon glyphicon-minus"></span></button>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-add-set">Add Set</button>
+                    </div>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".btn-add-set").click(function (e) {
+                var itemIndex = $(".add-set").length;
+                e.preventDefault();
+                var newItem = $("<div class='form-inline add-set'>" +
+                    "<div class='form-group'>" +
+                    "<label name='DateTimeStart' class='control-label'>Start Date</label>" +
+                    "<input type='datetime-local' id='LanPartyDates_" + itemIndex + "__DateTimeStart' name='LanPartyDates[" + itemIndex + "].DateTimeStart' class='form-control' onchange='checkDates()' />" +
+                    "<span class='text-danger field-validation-valid' data-valmsg-for='DateTimeStart' data-valmsg-replace='true'></span>" +
+                    "</div>" +
+                    "<div class='form-group'>" +
+                    "<label name='DateTimeStart' class='control-label'>End Date</label>" +
+                    "<input type='datetime-local' id='LanPartyDates_" + itemIndex + "__DateTimeFinish' name='LanPartyDates[" + itemIndex + "].DateTimeFinish' class='form-control' onchange='checkDates()'/>" +
+                    "<span class='text-danger field-validation-valid' data-valmsg-for='DateTimeFinish' data-valmsg-replace='true'></span>" +
+                    "</div>" +
+                    "<div class='form-group'>" +
+                    "<button class='btn btn-remove-set' type='button' data-toggle='tooltip' title='Remove Set'><span class='glyphicon glyphicon-minus'></span></button>" +
+                    "</div>" +
+                    "</div>");
+                $('.add-set .btn-remove-set').show();
+                $(".add-sets").append(newItem);
+            });
+
+            $(document).on('click', '.add-set .btn-remove-set', function (e) {
+                e.preventDefault();
+                $(this).parents('.add-set').remove();
+
+                removeButton();
+            });
+
+
+            function removeButton() {
+                if ($('.add-set').length == 1) {
+                    $('.add-set .btn-remove-set').hide();
+                }
+            }
+
+
+
+        });
+    </script>
+}

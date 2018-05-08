@@ -8,6 +8,12 @@ namespace PlannerLanParty.Models
     public class TournamentViewModel
     {
         public IEnumerable<Game> Games { get; set; }
-        public 
+        public List<Game> GamesList { get; set; }
+
+        public IEnumerable<TournamentParticipants> Participants { get; set; }
+        public IEnumerable<TournantGames> TournantGames { get; set; }
+        public List<TournantGames> TournantGamesList { get; set; }
+
+        public Tournament Tournament { get; set; }
     }
 }

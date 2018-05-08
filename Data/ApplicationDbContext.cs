@@ -28,6 +28,12 @@ namespace PlannerLanParty.Data
         public DbSet<PlannerLanParty.Models.LanPartyConcept> LanPartyConcept { get; set; }
         public DbSet<LanPartyDate> LanPartyDates { get; set; }
         public DbSet<AttendeesDate> AttendeesDates { get; set; }
+        public DbSet<TournamentParticipants> TournamentParticipants { get; set; }
+        public DbSet<Game> Games { get; set; }
+        public DbSet<TournantGames> TournantGames { get; set; }
+        public DbSet<Tournament> Tournaments { get; set; }
+
+
 
 
 
