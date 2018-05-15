@@ -6,13 +6,14 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using PlannerLanParty.Data;
+using PlannerLanParty.Models;
 using System;
 
 namespace PlannerLanParty.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180421002228_Initial migration")]
-    partial class Initialmigration
+    [Migration("20180515145925_edited dates in lanparty final")]
+    partial class editeddatesinlanpartyfinal
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -204,6 +205,20 @@ namespace PlannerLanParty.Migrations
                     b.ToTable("AttendeesDates");
                 });
 
+            modelBuilder.Entity("PlannerLanParty.Models.Game", b =>
+                {
+                    b.Property<int>("GameID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("GameName");
+
+                    b.Property<int>("GameType");
+
+                    b.HasKey("GameID");
+
+                    b.ToTable("Games");
+                });
+
             modelBuilder.Entity("PlannerLanParty.Models.LanPartyConcept", b =>
                 {
                     b.Property<int>("LanPartyID")
@@ -229,6 +244,8 @@ namespace PlannerLanParty.Migrations
 
                     b.Property<DateTime>("DateTimeStart");
 
+                    b.Property<bool>("FinalCheck");
+
                     b.Property<int>("LanPartyID");
 
                     b.HasKey("DateID");
@@ -241,9 +258,13 @@ namespace PlannerLanParty.Migrations
                     b.Property<int>("LanPartyID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("ConceptPartyID");
+
                     b.Property<string>("LanPartyAddress");
 
-                    b.Property<DateTime>("LanPartyFinalDate");
+                    b.Property<DateTime>("LanPartyFinalFinishDate");
+
+                    b.Property<DateTime>("LanPartyFinalStartDate");
 
                     b.Property<string>("LanPartyName");
 
@@ -252,6 +273,62 @@ namespace PlannerLanParty.Migrations
                     b.HasKey("LanPartyID");
 
                     b.ToTable("LanParties");
+                });
+
+            modelBuilder.Entity("PlannerLanParty.Models.ParticipantsGames", b =>
+                {
+                    b.Property<int>("ParticipantsGamesID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("GameName");
+
+                    b.Property<string>("ParticipantID");
+
+                    b.Property<int>("TournamentID");
+
+                    b.HasKey("ParticipantsGamesID");
+
+                    b.ToTable("ParticipantsGames");
+                });
+
+            modelBuilder.Entity("PlannerLanParty.Models.Tournament", b =>
+                {
+                    b.Property<int>("TournamentID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("TournamentName");
+
+                    b.HasKey("TournamentID");
+
+                    b.ToTable("Tournaments");
+                });
+
+            modelBuilder.Entity("PlannerLanParty.Models.TournamentGames", b =>
+                {
+                    b.Property<int>("TournamentGamesID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("GameName");
+
+                    b.Property<int>("TournamentID");
+
+                    b.HasKey("TournamentGamesID");
+
+                    b.ToTable("TournamentGames");
+                });
+
+            modelBuilder.Entity("PlannerLanParty.Models.TournamentParticipants", b =>
+                {
+                    b.Property<int>("TournamentParticipantsID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ParticipantID");
+
+                    b.Property<int>("TournamentID");
+
+                    b.HasKey("TournamentParticipantsID");
+
+                    b.ToTable("TournamentParticipants");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

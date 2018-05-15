@@ -25,13 +25,15 @@ namespace PlannerLanParty.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<PlannerLanParty.Models.LanPartyConcept> LanPartyConcept { get; set; }
+        public DbSet<LanPartyConcept> LanPartyConcept { get; set; }
         public DbSet<LanPartyDate> LanPartyDates { get; set; }
         public DbSet<AttendeesDate> AttendeesDates { get; set; }
         public DbSet<TournamentParticipants> TournamentParticipants { get; set; }
         public DbSet<Game> Games { get; set; }
-        public DbSet<TournantGames> TournantGames { get; set; }
+        public DbSet<TournamentGames> TournamentGames { get; set; }
         public DbSet<Tournament> Tournaments { get; set; }
+        public DbSet<ParticipantsGames> ParticipantsGames { get; set; }
+
 
 
 

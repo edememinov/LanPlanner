@@ -190,7 +190,7 @@ namespace PlannerLanParty.Controllers
                 {
                     foreach (var item in lanPartyConceptViewModel.LanPartyDates)
                     {
-                        //_context.LanPartyDates.Add(item);
+                        _context.Update(item);
                     }
                     _context.Update(lanPartyConceptViewModel.LanPartyConcept);
                     await _context.SaveChangesAsync();

@@ -17,27 +17,25 @@
                 <input asp-for="Tournament.TournamentName" class="form-control" />
                 <span asp-validation-for="Tournament.TournamentName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+
 
             <div class="form-group">
                 <fieldset class="form-add-set">
-                    <label for="sets" class="col-md-2 control-label">Dates</label>
-                    <div class="col-md-10">
+                    <label for="sets" class="col-md-12 control-label">Games</label>
+                    <div class="col-md-12">
                         <div class="concept-dates">
                             <div class="add-sets">
                                 <div class="form-inline add-set">
-                                    <div class="form-group">
+                                    <div class="form-group col-md-12">
 
 
                                     </div>
-
-                                    @*For loop and a dropdown for games, then add this to the Js.*@
-                                    <div class="form-group">
-                                        <label asp-for="GamesList[0].GameName" class="control-label">Start Date</label>
-                                        <input asp-for="GamesList[0].GameName" class="form-control" onchange="checkDates()" />
-                                        <span asp-validation-for="GamesList[0].GameName" class="text-danger" />
+                                    <div class="form-group col-md-12">
+                                        <label asp-for="TournamentGamesList[0].GameName" class="col-md-2 control-label"></label><br />
+                                        <div class="col-md-12">
+                                            <select asp-for="TournamentGamesList[0].GameName" asp-items="@Model.GameList"></select>
+                                        </div>
+                                        <span asp-validation-for='TournamentGamesList[0].GameName' class='text-danger' />
                                     </div>
 
                                     <div class="form-group">
@@ -51,6 +49,9 @@
                         <button class="btn btn-add-set">Add Set</button>
                     </div>
                 </fieldset>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </form>
     </div>
@@ -70,14 +71,13 @@
                 e.preventDefault();
                 var newItem = $("<div class='form-inline add-set'>" +
                     "<div class='form-group'>" +
-                    "<label name='DateTimeStart' class='control-label'>Start Date</label>" +
-                    "<input type='datetime-local' id='LanPartyDates_" + itemIndex + "__DateTimeStart' name='LanPartyDates[" + itemIndex + "].DateTimeStart' class='form-control' onchange='checkDates()' />" +
-                    "<span class='text-danger field-validation-valid' data-valmsg-for='DateTimeStart' data-valmsg-replace='true'></span>" +
-                    "</div>" +
-                    "<div class='form-group'>" +
-                    "<label name='DateTimeStart' class='control-label'>End Date</label>" +
-                    "<input type='datetime-local' id='LanPartyDates_" + itemIndex + "__DateTimeFinish' name='LanPartyDates[" + itemIndex + "].DateTimeFinish' class='form-control' onchange='checkDates()'/>" +
-                    "<span class='text-danger field-validation-valid' data-valmsg-for='DateTimeFinish' data-valmsg-replace='true'></span>" +
+                    "<label id='TournamentGamesList_" + itemIndex + "__GameID' name='TournamentGamesList[" + itemIndex + "].GameName' class='col-md-2 control-label'></label>" +
+                    "<div class='col-md-10'>" +
+                    "<select id='TournamentGamesList_" + itemIndex + "__GameName' name='TournamentGamesList[" + itemIndex + "].GameName''>" +
+                    "@{ foreach (var game in Model.GameList ) {<option value='@game.Value'>@game.Text</option> <h1> @game.Value</h1> } }" +
+                    "</select>" +
+                    "</div>" + 
+                    "<span id='TournamentGamesList_" + itemIndex + "__GameID' name='TournamentGamesList[" + itemIndex + "].GameName' class='text-danger' />" +
                     "</div>" +
                     "<div class='form-group'>" +
                     "<button class='btn btn-remove-set' type='button' data-toggle='tooltip' title='Remove Set'><span class='glyphicon glyphicon-minus'></span></button>" +

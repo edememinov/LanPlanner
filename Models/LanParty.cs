@@ -35,6 +35,7 @@ namespace PlannerLanParty.Models
         public int LanPartyID { get; set; }
         [NotMapped]
         public bool CheckBoxAnswer { get; set; }
+        public bool FinalCheck { get; set; }
 
     }
 
@@ -51,6 +52,13 @@ namespace PlannerLanParty.Models
 
     public class LanPartyFinal : LanParty
     {
-        public DateTime LanPartyFinalDate { get; set; }
+        public DateTime LanPartyFinalStartDate { get; set; }
+        public DateTime LanPartyFinalFinishDate { get; set; }
+
+        public int ConceptPartyID { get; set; }
+
+        public int TournamentID { get; set; }
+        [NotMapped]
+        public string TournamentIDString { get; set; }
     }
 }

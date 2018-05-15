@@ -74,7 +74,8 @@
 }
 
 .dropdown-menu:active {
-    background: linear-gradient(to bottom right, darkblue, lightblue);
+    color: #990033 !important;
+    background: linear-gradient(to bottom right, white, lightgrey) !important;
 }
 
 .dropdown-menu .dropdown-submenu .submenu_a {
@@ -84,7 +85,7 @@
 
 .dropdown-menu .dropdown-submenu .submenu_a:hover {
     color: #990033 !important;
-    background: linear-gradient(to bottom right, darkblue, lightblue) !important;
+    background: linear-gradient(to bottom right, white, lightgrey) !important;
 }
 
 .dropdown-menu .submenu_a {
@@ -93,7 +94,7 @@
 
 .dropdown-menu .submenu_a:hover {
    color: #990033 !important;
-    background: linear-gradient(to bottom right, darkblue, lightblue) !important;
+    background: linear-gradient(to bottom right, white, lightgrey) !important;
 }
 
 .dropdown-menu .test {
@@ -102,12 +103,12 @@
 
 .dropdown-menu .test:hover {
     color: #990033 !important;
-    background: linear-gradient(to bottom right, darkblue, lightblue) !important;
+    background: linear-gradient(to bottom right, white, lightgrey) !important;
 }
 
 .dropdown-menu .test:focus {
     color: #990033 !important;
-    background: linear-gradient(to bottom right, darkblue, lightblue) !important;
+    background: linear-gradient(to bottom right, white, lightgrey) !important;
 }
 
 .dropdown-submenu .dropdown-menu {

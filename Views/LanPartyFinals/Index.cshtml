@@ -10,18 +10,21 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.LanPartyFinalDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LanPartyName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LanPartyPlace)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LanPartyAddress)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LanPartyFinalStartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LanPartyFinalFinishDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LanPartyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LanPartyPlace)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LanPartyAddress)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -29,7 +32,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.LanPartyFinalDate)
+                @Html.DisplayFor(modelItem => item.LanPartyFinalStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LanPartyFinalFinishDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LanPartyName)

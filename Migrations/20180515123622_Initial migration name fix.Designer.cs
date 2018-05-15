@@ -12,8 +12,8 @@ using System;
 namespace PlannerLanParty.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180508223359_Added games")]
-    partial class Addedgames
+    [Migration("20180515123622_Initial migration name fix")]
+    partial class Initialmigrationnamefix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -281,6 +281,20 @@ namespace PlannerLanParty.Migrations
                     b.ToTable("Tournaments");
                 });
 
+            modelBuilder.Entity("PlannerLanParty.Models.TournamentGames", b =>
+                {
+                    b.Property<int>("TournamentGamesID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("GameName");
+
+                    b.Property<int>("TournamentID");
+
+                    b.HasKey("TournamentGamesID");
+
+                    b.ToTable("TournamentGames");
+                });
+
             modelBuilder.Entity("PlannerLanParty.Models.TournamentParticipants", b =>
                 {
                     b.Property<int>("TournamentParticipantsID")
@@ -293,20 +307,6 @@ namespace PlannerLanParty.Migrations
                     b.HasKey("TournamentParticipantsID");
 
                     b.ToTable("TournamentParticipants");
-                });
-
-            modelBuilder.Entity("PlannerLanParty.Models.TournantGames", b =>
-                {
-                    b.Property<int>("TournamentGamesID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("GameID");
-
-                    b.Property<int>("TournamentID");
-
-                    b.HasKey("TournamentGamesID");
-
-                    b.ToTable("TournantGames");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

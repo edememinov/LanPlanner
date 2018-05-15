@@ -38,11 +38,15 @@
 
                                     @{var counter = 0; }
 
-                                    @for(int i = 0; i < Model.LanPartyDates.Count(); i++)
+                                    @for (int i = 0; i < Model.LanPartyDates.Count(); i++)
 
                                     {
                                         <div class="form-group">
                                             <input type="hidden" asp-for="@Model.LanPartyDates[i].DateID" hidden="hidden">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="hidden" asp-for="@Model.LanPartyDates[i].LanPartyID" hidden="hidden">
                                         </div>
 
 
@@ -83,6 +87,9 @@
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </form>
+        <div>
+            <a asp-route-id="@Model.LanPartyConcept.LanPartyID" asp-controller="LanPartyFinals" asp-action="MakeFinal">Make final</a>
+        </div>
     </div>
 </div>
 

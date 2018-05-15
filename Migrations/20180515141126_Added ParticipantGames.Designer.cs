@@ -12,9 +12,10 @@ using System;
 namespace PlannerLanParty.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180515141126_Added ParticipantGames")]
+    partial class AddedParticipantGames
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -243,8 +244,6 @@ namespace PlannerLanParty.Migrations
 
                     b.Property<DateTime>("DateTimeStart");
 
-                    b.Property<bool>("FinalCheck");
-
                     b.Property<int>("LanPartyID");
 
                     b.HasKey("DateID");
@@ -257,19 +256,13 @@ namespace PlannerLanParty.Migrations
                     b.Property<int>("LanPartyID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ConceptPartyID");
-
                     b.Property<string>("LanPartyAddress");
 
-                    b.Property<DateTime>("LanPartyFinalFinishDate");
-
-                    b.Property<DateTime>("LanPartyFinalStartDate");
+                    b.Property<DateTime>("LanPartyFinalDate");
 
                     b.Property<string>("LanPartyName");
 
                     b.Property<string>("LanPartyPlace");
-
-                    b.Property<int>("TournamentID");
 
                     b.HasKey("LanPartyID");
 

@@ -1,0 +1,55 @@
+﻿@model PlannerLanParty.Models.FinalLanViewModel
+
+@{
+    ViewData["Title"] = "MakeFinal";
+}
+
+<h2>MakeFinal</h2>
+
+<div>
+    <h4>LanPartyFinal</h4>
+    <hr />
+    <form asp-action="MakeFinal">
+        <input type="hidden" asp-for="LanPartyFinal.LanPartyID" />
+        <input type="hidden" asp-for="LanPartyFinal.ConceptPartyID" />
+
+        <div class="form-group">
+            <label asp-for="LanPartyFinal.LanPartyName" class="control-label"></label>
+            <input asp-for="LanPartyFinal.LanPartyName" class="form-control" />
+            <span asp-validation-for="LanPartyFinal.LanPartyName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="LanPartyFinal.LanPartyPlace" class="control-label"></label>
+            <input asp-for="LanPartyFinal.LanPartyPlace" class="form-control" />
+            <span asp-validation-for="LanPartyFinal.LanPartyPlace" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="LanPartyFinal.LanPartyAddress" class="control-label"></label>
+            <input asp-for="LanPartyFinal.LanPartyAddress" class="form-control" />
+            <span asp-validation-for="LanPartyFinal.LanPartyAddress" class="text-danger"></span>
+        </div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="LanPartyFinal.LanPartyFinalStartDate" class="control-label"></label>
+            <input asp-for="LanPartyFinal.LanPartyFinalStartDate" class="form-control" />
+            <span asp-validation-for="LanPartyFinal.LanPartyFinalStartDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="LanPartyFinal.LanPartyFinalFinishDate" class="control-label"></label>
+            <input asp-for="LanPartyFinal.LanPartyFinalFinishDate" class="form-control" />
+            <span asp-validation-for="LanPartyFinal.LanPartyFinalFinishDate" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-12">
+            <label asp-for="LanPartyFinal.TournamentIDString" class="col-md-2 control-label"></label><br />
+            <div class="col-md-12">
+                <select asp-for="LanPartyFinal.TournamentIDString" asp-items="@Model.TournamentList"></select>
+            </div>
+            <span asp-validation-for='LanPartyFinal.TournamentIDString' class='text-danger' />
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+
+    </form>
+</div>

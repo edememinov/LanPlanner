@@ -1,4 +1,4 @@
-﻿@model PlannerLanParty.Models.Tournament
+﻿@model PlannerLanParty.Models.TournamentViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -12,11 +12,57 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="TournamentID" />
+            <input type="hidden" asp-for="Tournament.TournamentID" />
             <div class="form-group">
-                <label asp-for="TournamentName" class="control-label"></label>
-                <input asp-for="TournamentName" class="form-control" />
-                <span asp-validation-for="TournamentName" class="text-danger"></span>
+                <label asp-for="Tournament.TournamentName" class="control-label"></label>
+                <input asp-for="Tournament.TournamentName" class="form-control" />
+                <span asp-validation-for="Tournament.TournamentName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <fieldset class="form-add-set">
+                    <label for="sets" class="col-md-12 control-label">Games</label>
+                    <div class="col-md-12">
+                        <div class="concept-dates">
+                            <div class="add-sets">
+                                <div class="form-inline add-set">
+                                    <div class="form-group col-md-12">
+
+
+                                    </div>
+                                    @{
+                                        for (var x = 0; x < Model.TournamentGamesList.Count(); x++)
+                                        {
+                                            <div class="form-group">
+                                                <input type="hidden" asp-for="@Model.TournamentGamesList[x].TournamentGamesID" hidden="hidden">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="hidden" asp-for="@Model.TournamentGamesList[x].TournamentID" hidden="hidden">
+                                            </div>
+
+                                            <div class="form-group col-md-12">
+                                                <label asp-for="TournamentGamesList[x].GameName" class="col-md-2 control-label"></label><br />
+                                                <div class="col-md-12">
+                                                    <select asp-for="TournamentGamesList[x].GameName" asp-items="@Model.GameList"></select>
+                                                </div>
+                                                <span asp-validation-for='TournamentGamesList[x].GameName' class='text-danger' />
+                                            </div>
+
+                                        }
+                                    }
+
+
+                                    <div class="form-group">
+                                        <button class="btn btn-remove-set" data-toggle="tooltip" title="Remove Set"><span class="glyphicon glyphicon-minus"></span></button>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-add-set">Add Set</button>
+                    </div>
+                </fieldset>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />

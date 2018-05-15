@@ -12,9 +12,10 @@ using System;
 namespace PlannerLanParty.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180515143237_Added final lan")]
+    partial class Addedfinallan
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -261,15 +262,11 @@ namespace PlannerLanParty.Migrations
 
                     b.Property<string>("LanPartyAddress");
 
-                    b.Property<DateTime>("LanPartyFinalFinishDate");
-
-                    b.Property<DateTime>("LanPartyFinalStartDate");
+                    b.Property<DateTime>("LanPartyFinalDate");
 
                     b.Property<string>("LanPartyName");
 
                     b.Property<string>("LanPartyPlace");
-
-                    b.Property<int>("TournamentID");
 
                     b.HasKey("LanPartyID");
 

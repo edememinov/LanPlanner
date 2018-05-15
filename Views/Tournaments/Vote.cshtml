@@ -1,0 +1,177 @@
+﻿@model PlannerLanParty.Models.TournamentViewModel
+
+@{
+    ViewData["Title"] = "Vote";
+}
+
+<h2>Vote</h2>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<h4>LanPartyConcept</h4>
+<hr />
+<div class="row">
+
+    <form asp-action="Vote">
+        <div class="col-md-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Tournament.TournamentID" />
+            <div class="form-group">
+                <label asp-for="Tournament.TournamentName" class="control-label"></label>
+                <input asp-for="Tournament.TournamentName" class="form-control" />
+                <span asp-validation-for="Tournament.TournamentName" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-12">
+                <input type="hidden" name="LanPartyConceptDates[0].DateID">
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12">
+            <div class="container-fluid">
+                <div class="col-container" id="datelist">
+
+                    @{var counter = 0; }
+
+                    @for (int i = 0; i < Model.TournamentGamesList.Count(); i++)
+
+                    {
+                        var counterplus = counter + 1;
+
+                        <div class="col-xs-12 col-lg-4 col-md-offset-2 col" style="border:solid black 2px; border-radius: 2%;" id="date_@i">
+                            <div class="col-xs-12">
+                                <input type="hidden" asp-for="@Model.TournamentGamesList[i].TournamentGamesID" hidden="hidden">
+                            </div>
+                            @{
+                                if (Model.Participants != null)
+                                {
+                                    var currentUser = Model.Participants.ToList().Where(x => x.Id == Model.CurrentUser.Id).FirstOrDefault();
+                                    if (!Model.Participants.Contains(currentUser))
+                                    {
+                                        <div class="col-xs-12">
+                                            <input type="checkbox" asp-for="@Model.TournamentGamesList[i].CheckBoxAnswer" />
+                                            <label>@Model.TournamentGamesList[i].GameName</label>
+                                        </div>
+
+                                    }
+
+                                }
+                                else
+                                {
+                                    <div class="col-xs-12">
+                                        <input type="checkbox" asp-for="@Model.TournamentGamesList[i].CheckBoxAnswer" />
+                                        <label>@counterplus</label>
+                                    </div>
+
+                                }
+
+                            }
+                            <div class="form-group">
+                                <input type="hidden" asp-for="@Model.TournamentGamesList[i].TournamentGamesID" hidden="hidden">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="hidden" asp-for="@Model.TournamentGamesList[i].TournamentID" hidden="hidden">
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label asp-for="TournamentGamesList[i].GameName" class="col-md-2 control-label"></label><br />
+                                <div class="col-md-12">
+                                    <select asp-for="TournamentGamesList[i].GameName" asp-items="@Model.GameList"></select>
+                                </div>
+                                <span asp-validation-for='TournamentGamesList[i].GameName' class='text-danger' />
+                            </div>
+
+
+
+                            <div id="user_count_@i">
+                                <label>These users chose this date:</label>
+                                @if (Model.Participants != null)
+                                {
+
+                                    @foreach (var participantgame in Model.ParticipantsGames)
+                                    {
+                                        var user = Model.Participants.ToList().Where(x => x.Id == participantgame.ParticipantID).FirstOrDefault();
+
+                                        if (participantgame.GameName == Model.TournamentGamesList[i].GameName)
+                                        {
+                                            <input asp-for="@user.Email" class="form-control" disabled="disabled" />
+
+                                        }
+                                    }
+                                }
+
+                            </div>
+                        </div>
+
+
+                        counter++;
+                    }
+                    @{
+
+                        if (Model.Participants != null)
+                        {
+                            var currentUser = Model.Participants.ToList().Where(x => x.Id == Model.CurrentUser.Id).FirstOrDefault();
+
+
+                            if (!Model.Participants.Contains(currentUser))
+                            {
+                                <div class="col-xs-12 ">
+                                    <input type="submit" value="Save" class="btn btn-default" />
+                                </div>
+
+                            }
+                        }
+                        else
+                        {
+
+                            <div class="col-xs-12 ">
+                                <input type="submit" value="Save" class="btn btn-default" />
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        var element = document.getElementById("datelist");
+        var list = [];
+        var elementcount = element.childElementCount;
+        for (var c = 0; c < elementcount; c++) {
+            var elementName = "user_count_" + c;
+            var elementDate = document.getElementById(elementName);
+            var dateElementCount = elementDate.childElementCount;
+
+
+            list.push({ name: elementName, nr: dateElementCount });
+
+        }
+
+        var largest = Math.max.apply(Math, list.map(function (o) { return o.nr; }))
+        var least = Math.min.apply(Math, list.map(function (o) { return o.nr; }))
+        var nameslistmax = list.filter(x => x.nr == largest);
+        var nameslistmin = list.filter(x => x.nr == least);
+
+        for (var x = 0; x < nameslistmax.length; x++) {
+            var num = nameslistmax[x].name.replace(/^\D+/g, '');
+            finalelementname = "date_" + num
+            document.getElementById(finalelementname).style.borderColor = "green";
+        }
+        for (var x = 0; x < nameslistmin.length; x++) {
+            var num = nameslistmin[x].name.replace(/^\D+/g, '');
+            finalelementname = "date_" + num
+            document.getElementById(finalelementname).style.borderColor = "red";
+        }
+
+    </script>
+
+
+}

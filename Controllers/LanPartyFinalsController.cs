@@ -54,7 +54,7 @@ namespace PlannerLanParty.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("LanPartyFinalDate,LanPartyID,LanPartyName,LanPartyPlace,LanPartyAddress")] LanPartyFinal lanPartyFinal)
+        public async Task<IActionResult> Create(LanPartyFinal lanPartyFinal)
         {
             if (ModelState.IsValid)
             {
@@ -148,6 +148,62 @@ namespace PlannerLanParty.Controllers
         private bool LanPartyFinalExists(int id)
         {
             return _context.LanParties.Any(e => e.LanPartyID == id);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> MakeFinal(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var lanPartyConcept = await _context.LanPartyConcept
+                .SingleOrDefaultAsync(m => m.LanPartyID == id);
+            if (lanPartyConcept == null)
+            {
+                return NotFound();
+            }
+            var lanPartyFinal = new FinalLanViewModel();
+            var attendeeDates = new List<AttendeesDate>();
+            attendeeDates = _context.AttendeesDates.ToList().Where(x => x.LanPartyID == id).ToList();
+            lanPartyFinal.LanPartyFinal = new LanPartyFinal();
+            lanPartyFinal.LanPartyFinal.LanPartyAddress = lanPartyConcept.LanPartyAddress;
+            var dates = attendeeDates
+            .GroupBy(n => n.DateID)
+            .Select(n => new
+            {
+                MetricName = n.Key,
+                MetricCount = n.Count()
+            }
+            )
+            .OrderBy(n => n.MetricCount);
+            var mostKey = dates.First().MetricName;
+            var lanDateFinal = _context.LanPartyDates.Where(x => x.DateID == mostKey).First();
+            lanPartyFinal.LanPartyFinal.LanPartyFinalStartDate = lanDateFinal.DateTimeStart;
+            lanPartyFinal.LanPartyFinal.LanPartyFinalFinishDate = lanDateFinal.DateTimeFinish;
+            lanPartyFinal.LanPartyFinal.LanPartyName = lanPartyConcept.LanPartyName;
+            lanPartyFinal.LanPartyFinal.LanPartyPlace = lanPartyConcept.LanPartyPlace;
+            lanPartyFinal.LanPartyFinal.ConceptPartyID = lanPartyConcept.LanPartyID;
+            lanPartyFinal.TournamentList = _context.Tournaments.Select(x => new SelectListItem { Text = x.TournamentName, Value = x.TournamentID.ToString() }).ToList();
+
+
+
+
+            return View(lanPartyFinal);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> MakeFinal (FinalLanViewModel FinalLanViewModel)
+        {
+            FinalLanViewModel.LanPartyFinal.TournamentID = Int32.Parse(FinalLanViewModel.LanPartyFinal.TournamentIDString);
+            if (ModelState.IsValid)
+            {
+                _context.Add(FinalLanViewModel.LanPartyFinal);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(FinalLanViewModel);
         }
     }
 }
