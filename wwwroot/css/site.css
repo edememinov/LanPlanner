@@ -41,7 +41,7 @@
 }
 
 .navbar {
-    background: linear-gradient(to bottom right, #990033, #ff8080);
+    background: linear-gradient(to bottom right, #003366, #33ccff);
 }
 
 .navbar-brand {
@@ -49,7 +49,7 @@
 }
 
 .navbar-brand:hover {
-    color: #003366 !important
+    color: #990033 !important;
 }
 
 .navbar-inverse .navbar-nav > li > a {
@@ -61,20 +61,20 @@
 }
 
 .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a:hover {
-    color: #003366;
+    color: #990033 !important;
 }
 
 .dropdown-submenu {
     position: relative;
-    background: linear-gradient(to bottom right, #990033, #ff8080);
+    background: linear-gradient(to bottom right, #003366, #33ccff);
 }
 
 .dropdown-menu {
-    background: linear-gradient(to bottom right, #990033, #ff8080);
+    background: linear-gradient(to bottom right, #003366, #33ccff);
 }
 
 .dropdown-menu:active {
-    color: #990033 !important;
+    color: #003366 !important;
     background: linear-gradient(to bottom right, white, lightgrey) !important;
 }
 
@@ -84,7 +84,7 @@
 
 
 .dropdown-menu .dropdown-submenu .submenu_a:hover {
-    color: #990033 !important;
+    color: #003366 !important;
     background: linear-gradient(to bottom right, white, lightgrey) !important;
 }
 
@@ -93,7 +93,7 @@
 }
 
 .dropdown-menu .submenu_a:hover {
-   color: #990033 !important;
+   color: #003366 !important;
     background: linear-gradient(to bottom right, white, lightgrey) !important;
 }
 
@@ -102,12 +102,12 @@
 }
 
 .dropdown-menu .test:hover {
-    color: #990033 !important;
+    color: #003366 !important;
     background: linear-gradient(to bottom right, white, lightgrey) !important;
 }
 
 .dropdown-menu .test:focus {
-    color: #990033 !important;
+    color: #003366 !important;
     background: linear-gradient(to bottom right, white, lightgrey) !important;
 }
 
