@@ -155,6 +155,68 @@
     transition: all 1.2s
 }
 
+.make-final-button-index:hover {
+    color: #003366 !important;
+    background: linear-gradient(to bottom right, white, lightgrey) !important;
+    text-decoration: none;
+}
+
+.make-final-button-index {
+    position: relative;
+    background: linear-gradient(to bottom right, #003366, #33ccff);
+    float: left;
+    border: none;
+    font-size: 105%;
+    color: #FFFFFF;
+    padding: 1%;
+    width: 40%;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.make-final-button-index:after {
+    content: "";
+    background: linear-gradient(to bottom right, #003366, #33ccff);
+    display: block;
+    position: absolute;
+    padding-top: 140%;
+    padding-left: 600%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 1.2s
+}
+
+.make-final-button-index-disabled:hover {
+    color: #003366 !important;
+    background: linear-gradient(to bottom right, white, lightgrey) !important;
+    text-decoration: none;
+}
+
+.make-final-button-index-disabled {
+    position: relative;
+    background: linear-gradient(to bottom right, darkred, red);
+    float: left;
+    border: none;
+    font-size: 105%;
+    color: #FFFFFF;
+    padding: 1%;
+    width: 40%;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
 .make-final-button:active:after {
     padding: 0;
     margin: 0;
