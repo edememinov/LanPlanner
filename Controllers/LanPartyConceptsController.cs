@@ -171,6 +171,25 @@ namespace PlannerLanParty.Controllers
             return View(lanPartyConceptViewModel);
         }
 
+        // GET: LanPartyConcepts/Edit/5
+        public async Task<IActionResult> Finalise(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            ConceptLanViewModel lanPartyConceptViewModel = new ConceptLanViewModel();
+
+            lanPartyConceptViewModel.LanPartyConcept = await _context.LanPartyConcept.SingleOrDefaultAsync(m => m.LanPartyID == id);
+            lanPartyConceptViewModel.ConceptDates = _context.LanPartyDates.ToList().Where(x => x.LanPartyID == id);
+            lanPartyConceptViewModel.LanPartyDates = lanPartyConceptViewModel.ConceptDates.ToList();
+            if (lanPartyConceptViewModel.LanPartyConcept == null)
+            {
+                return NotFound();
+            }
+            return View(lanPartyConceptViewModel);
+        }
+
         // POST: LanPartyConcepts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.

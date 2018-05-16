@@ -140,6 +140,9 @@ namespace PlannerLanParty.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var lanPartyFinal = await _context.LanParties.SingleOrDefaultAsync(m => m.LanPartyID == id);
+            var lanPartyConcept =  _context.LanPartyConcept.Where(x => x.LanPartyID == lanPartyFinal.ConceptPartyID).FirstOrDefault();
+            lanPartyConcept.FinalCheck = false;
+            _context.Update(lanPartyConcept);
             _context.LanParties.Remove(lanPartyFinal);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -199,7 +202,10 @@ namespace PlannerLanParty.Controllers
             FinalLanViewModel.LanPartyFinal.TournamentID = Int32.Parse(FinalLanViewModel.LanPartyFinal.TournamentIDString);
             if (ModelState.IsValid)
             {
+                FinalLanViewModel.LanPartyConcept = _context.LanPartyConcept.Where(x => x.LanPartyID == FinalLanViewModel.LanPartyFinal.ConceptPartyID).FirstOrDefault();
+                FinalLanViewModel.LanPartyConcept.FinalCheck = true;
                 _context.Add(FinalLanViewModel.LanPartyFinal);
+                _context.Update(FinalLanViewModel.LanPartyConcept);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
