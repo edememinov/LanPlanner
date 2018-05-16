@@ -20,7 +20,7 @@ namespace PlannerLanParty.Models
 
     public class LanPartyConcept : LanParty
     {
-
+        public bool FinalCheck { get; set; }
     }
 
     public class LanPartyDate
@@ -35,7 +35,7 @@ namespace PlannerLanParty.Models
         public int LanPartyID { get; set; }
         [NotMapped]
         public bool CheckBoxAnswer { get; set; }
-        public bool FinalCheck { get; set; }
+        
 
     }
 

@@ -12,37 +12,45 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.LanPartyName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LanPartyPlace)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LanPartyAddress)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LanPartyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LanPartyPlace)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LanPartyAddress)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.LanPartyName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LanPartyPlace)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LanPartyAddress)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.LanPartyID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.LanPartyID">Details</a> |
-                <a asp-action="Vote" asp-route-id="@item.LanPartyID">Vote</a> |
-                <a asp-action="Delete" asp-route-id="@item.LanPartyID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            if (item.FinalCheck == false)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LanPartyName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LanPartyPlace)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LanPartyAddress)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.LanPartyID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.LanPartyID">Details</a> |
+                        <a asp-action="Vote" asp-route-id="@item.LanPartyID">Vote</a> |
+                        <a asp-action="Delete" asp-route-id="@item.LanPartyID">Delete</a>|
+                        <a asp-action="Finalise" asp-route-id="@item.LanPartyID">Finalise</a>
+
+                    </td>
+                </tr>
+            }
+
+        }
     </tbody>
 </table>

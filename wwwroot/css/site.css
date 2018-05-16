@@ -118,6 +118,50 @@
     margin-top: -1px;
 }
 
+.make-final-button:hover {
+    color: #003366 !important;
+    background: linear-gradient(to bottom right, white, lightgrey) !important;
+    text-decoration: none;
+}
+
+.make-final-button {
+    position: relative;
+    background: linear-gradient(to bottom right, #003366, #33ccff);
+    float: right;
+    border: none;
+    font-size: 140%;
+    color: #FFFFFF;
+    padding: 1%;
+    width: 20%;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.make-final-button:after {
+    content: "";
+    background: linear-gradient(to bottom right, #003366, #33ccff);
+    display: block;
+    position: absolute;
+    padding-top: 140%;
+    padding-left: 600%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 1.2s
+}
+
+.make-final-button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */
