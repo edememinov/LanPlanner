@@ -32,29 +32,32 @@
                                     @{
                                         for (var x = 0; x < Model.TournamentGamesList.Count(); x++)
                                         {
-                                            <div class="form-group">
-                                                <input type="hidden" asp-for="@Model.TournamentGamesList[x].TournamentGamesID" hidden="hidden">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <input type="hidden" asp-for="@Model.TournamentGamesList[x].TournamentID" hidden="hidden">
-                                            </div>
-
-                                            <div class="form-group col-md-12">
-                                                <label asp-for="TournamentGamesList[x].GameName" class="col-md-2 control-label"></label><br />
-                                                <div class="col-md-12">
-                                                    <select asp-for="TournamentGamesList[x].GameName" asp-items="@Model.GameList"></select>
+                                            <div>
+                                                <div class="form-group">
+                                                    <input type="hidden" asp-for="@Model.TournamentGamesList[x].TournamentGamesID" hidden="hidden">
                                                 </div>
-                                                <span asp-validation-for='TournamentGamesList[x].GameName' class='text-danger' />
+
+                                                <div class="form-group">
+                                                    <input type="hidden" asp-for="@Model.TournamentGamesList[x].TournamentID" hidden="hidden">
+                                                </div>
+
+                                                <div class="form-group col-md-10">
+                                                    <label asp-for="TournamentGamesList[x].GameName" class="col-md-2 control-label"></label><br />
+                                                    <div class="col-md-12">
+                                                        <select asp-for="TournamentGamesList[x].GameName" asp-items="@Model.GameList"></select>
+                                                    </div>
+                                                    <span asp-validation-for='TournamentGamesList[x].GameName' class='text-danger' />
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <button class="btn btn-remove-set" data-toggle="tooltip" title="Remove Set"><span class="glyphicon glyphicon-minus"></span></button>
+                                                </div>
                                             </div>
 
                                         }
                                     }
 
 
-                                    <div class="form-group">
-                                        <button class="btn btn-remove-set" data-toggle="tooltip" title="Remove Set"><span class="glyphicon glyphicon-minus"></span></button>
-                                    </div>
+
 
 
                                 </div>
@@ -77,4 +80,48 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".btn-add-set").click(function (e) {
+                var itemIndex = $(".add-set").length;
+                e.preventDefault();
+                var newItem = $("<div class='add-set'>" +
+                    "<div>" +
+                    "<div class='form-group col-md-10'>" +
+                    "<label id='TournamentGamesList_" + itemIndex + "__GameID' name='TournamentGamesList[" + itemIndex + "].GameName' class='col-md-2 control-label'></label>" +
+                    "<div class='col-md-12'>" +
+                    "<select id='TournamentGamesList_" + itemIndex + "__GameName' name='TournamentGamesList[" + itemIndex + "].GameName''>" +
+                    "@{ foreach (var game in Model.GameList ) {<option value='@game.Value'>@game.Text</option> <h1> @game.Value</h1> } }" +
+                    "</select>" +
+                    "</div>" +
+                    "<span id='TournamentGamesList_" + itemIndex + "__GameID' name='TournamentGamesList[" + itemIndex + "].GameName' class='text-danger' />" +
+                    "</div>" +
+                    "<div class='form-group col-md-2'>" +
+                    "<button class='btn btn-remove-set' type='button' data-toggle='tooltip' title='Remove Set'><span class='glyphicon glyphicon-minus'></span></button>" +
+                    "</div>" +
+                    "</div>");
+                $('.add-set .btn-remove-set').show();
+                $(".add-sets").append(newItem);
+            });
+
+            $(document).on('click', '.add-set .btn-remove-set', function (e) {
+                e.preventDefault();
+                $(this).parents('.add-set').remove();
+
+                removeButton();
+            });
+
+
+            function removeButton() {
+                if ($('.add-set').length == 1) {
+                    $('.add-set .btn-remove-set').hide();
+                }
+            }
+
+
+
+        });
+    </script>
 }
