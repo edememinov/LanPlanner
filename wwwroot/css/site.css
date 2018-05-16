@@ -41,16 +41,16 @@
 }
 
 .navbar {
-    background: linear-gradient(to bottom right, #003366, #33ccff);
+    background: linear-gradient(to bottom right, #990033, #ff8080);
 }
 
 .navbar-brand {
     color: white !important
 }
 
-.navbar-brand:hover {
-    color: #990033 !important;
-}
+    .navbar-brand:hover {
+        color: #003366 !important
+    }
 
 .navbar-inverse .navbar-nav > li > a {
     color: white;
@@ -61,61 +61,79 @@
 }
 
 .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a:hover {
-    color: #990033 !important;
+    color: #003366;
 }
 
 .dropdown-submenu {
     position: relative;
-    background: linear-gradient(to bottom right, #003366, #33ccff);
+    background: linear-gradient(to bottom right, #990033, #ff8080);
 }
 
 .dropdown-menu {
-    background: linear-gradient(to bottom right, #003366, #33ccff);
+    background: linear-gradient(to bottom right, #990033, #ff8080);
 }
 
-.dropdown-menu:active {
-    color: #003366 !important;
-    background: linear-gradient(to bottom right, white, lightgrey) !important;
-}
+    .dropdown-menu:active {
+        color: #990033 !important;
+        background: linear-gradient(to bottom right, white, lightgrey) !important;
+    }
 
-.dropdown-menu .dropdown-submenu .submenu_a {
-    color: white !important; 
-    /*swek*/
-}
+    .dropdown-menu .dropdown-submenu .submenu_a {
+        color: white !important;
+    }
 
 
-.dropdown-menu .dropdown-submenu .submenu_a:hover {
-    color: #003366 !important;
-    background: linear-gradient(to bottom right, white, lightgrey) !important;
-}
+        .dropdown-menu .dropdown-submenu .submenu_a:hover {
+            color: #990033 !important;
+            background: linear-gradient(to bottom right, white, lightgrey) !important;
+        }
 
-.dropdown-menu .submenu_a {
-    color: white !important;
-}
+    .dropdown-menu .submenu_a {
+        color: white !important;
+    }
 
-.dropdown-menu .submenu_a:hover {
-   color: #003366 !important;
-    background: linear-gradient(to bottom right, white, lightgrey) !important;
-}
+        .dropdown-menu .submenu_a:hover {
+            color: #990033 !important;
+            background: linear-gradient(to bottom right, white, lightgrey) !important;
+        }
 
-.dropdown-menu .test {
-    color: white !important;
-}
+    .dropdown-menu .test {
+        color: white !important;
+    }
 
-.dropdown-menu .test:hover {
-    color: #003366 !important;
-    background: linear-gradient(to bottom right, white, lightgrey) !important;
-}
+        .dropdown-menu .test:hover {
+            color: #990033 !important;
+            background: linear-gradient(to bottom right, white, lightgrey) !important;
+        }
 
-.dropdown-menu .test:focus {
-    color: #003366 !important;
-    background: linear-gradient(to bottom right, white, lightgrey) !important;
-}
+        .dropdown-menu .test:focus {
+            color: #990033 !important;
+            background: linear-gradient(to bottom right, white, lightgrey) !important;
+        }
 
 .dropdown-submenu .dropdown-menu {
     top: 0;
     left: 100%;
     margin-top: -1px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+
+    .col-container {
+        display: block;
+    }
+
+    .col {
+        flex: 0;
+        padding: 0;
+        margin-top: 1%;
+        width: 100%;
+    }
 }
 
 .make-final-button:hover {
@@ -126,7 +144,7 @@
 
 .make-final-button {
     position: relative;
-    background: linear-gradient(to bottom right, #003366, #33ccff);
+    background: linear-gradient(to bottom right, #990033, #ff8080);
     float: right;
     border: none;
     font-size: 140%;
@@ -142,40 +160,22 @@
     text-decoration: none;
 }
 
-.make-final-button:after {
-    content: "";
-    background: linear-gradient(to bottom right, #003366, #33ccff);
-    display: block;
-    position: absolute;
-    padding-top: 140%;
-    padding-left: 600%;
-    margin-left: -20px !important;
-    margin-top: -120%;
-    opacity: 0;
-    transition: all 1.2s
-}
-
-.make-final-button:active:after {
-    padding: 0;
-    margin: 0;
-    opacity: 1;
-    transition: 0s
-}
-
-/* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none;
-    }
-    .col-container {
+    .make-final-button:after {
+        content: "";
+        background: linear-gradient(to bottom right, #990033, #ff8080);
         display: block;
-    }
-    .col {
-        flex: 0;
-        padding: 0;
-        margin-top: 1%;
-        width: 100%;
+        position: absolute;
+        padding-top: 140%;
+        padding-left: 600%;
+        margin-left: -20px !important;
+        margin-top: -120%;
+        opacity: 0;
+        transition: all 1.2s
     }
 
-}
+    .make-final-button:active:after {
+        padding: 0;
+        margin: 0;
+        opacity: 1;
+        transition: 0s
+    }
