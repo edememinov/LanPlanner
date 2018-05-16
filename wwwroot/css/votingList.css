@@ -1,0 +1,6 @@
+﻿.games-list .game-item {
+    margin-bottom: 10px;
+    border: solid black 2px;
+    border-radius: 5px;
+    height: 200px;
+}
