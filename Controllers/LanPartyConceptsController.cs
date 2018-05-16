@@ -29,7 +29,24 @@ namespace PlannerLanParty.Controllers
         // GET: LanPartyConcepts
         public async Task<IActionResult> Index()
         {
-            return View(await _context.LanPartyConcept.ToListAsync());
+            ConceptLanViewModel conceptLanViewModel = new ConceptLanViewModel();
+            conceptLanViewModel.ConceptLanParties = await _context.LanPartyConcept.ToListAsync();
+            var attendeedates = _context.AttendeesDates.ToList();
+            var count = attendeedates.GroupBy(l => l.LanPartyID).Select(g => new { LanPartyID = g.Key, Count = g.Select(l => l.AttendeeID).Distinct().Count()});
+            foreach(var lan in conceptLanViewModel.ConceptLanParties)
+            {
+                lan.AttendeeCount = 0;
+            }
+            foreach(var c in count)
+            {
+                conceptLanViewModel.LanPartyConcept = conceptLanViewModel.ConceptLanParties.Where(x => x.LanPartyID == c.LanPartyID).FirstOrDefault();
+                if(conceptLanViewModel.LanPartyConcept != null)
+                {
+                    conceptLanViewModel.LanPartyConcept.AttendeeCount = c.Count;
+                }
+                
+            }
+            return View(conceptLanViewModel);
         }
 
         // GET: LanPartyConcepts/Details/5
@@ -66,7 +83,7 @@ namespace PlannerLanParty.Controllers
             lanPartyConceptViewModel.Attendees = new List<ApplicationUser>();
             lanPartyConceptViewModel.Users = _userManager.Users.ToList();
             lanPartyConceptViewModel.CurrentUser = await _userManager.GetUserAsync(HttpContext.User);
-            
+
             if (lanPartyConceptViewModel.AttendeesDates.Count() > 0)
             {
                 foreach (var item in lanPartyConceptViewModel.AttendeesDates)
@@ -78,7 +95,7 @@ namespace PlannerLanParty.Controllers
             {
                 lanPartyConceptViewModel.Attendees = null;
             }
-       
+
 
 
 
@@ -114,7 +131,7 @@ namespace PlannerLanParty.Controllers
                     _context.Add(attendeesDate);
                 }
             }
-            
+
             if (lanPartyConceptViewModel.LanPartyConcept == null)
             {
                 return NotFound();
@@ -179,10 +196,23 @@ namespace PlannerLanParty.Controllers
                 return NotFound();
             }
             ConceptLanViewModel lanPartyConceptViewModel = new ConceptLanViewModel();
-
+            lanPartyConceptViewModel.Attendees = new List<ApplicationUser>();
+            lanPartyConceptViewModel.Users = _userManager.Users.ToList();
             lanPartyConceptViewModel.LanPartyConcept = await _context.LanPartyConcept.SingleOrDefaultAsync(m => m.LanPartyID == id);
             lanPartyConceptViewModel.ConceptDates = _context.LanPartyDates.ToList().Where(x => x.LanPartyID == id);
+            lanPartyConceptViewModel.AttendeesDates = _context.AttendeesDates.ToList().Where(x => x.LanPartyID == id);
             lanPartyConceptViewModel.LanPartyDates = lanPartyConceptViewModel.ConceptDates.ToList();
+            if (lanPartyConceptViewModel.AttendeesDates.Count() > 0)
+            {
+                foreach (var item in lanPartyConceptViewModel.AttendeesDates)
+                {
+                    lanPartyConceptViewModel.Attendees.Add(lanPartyConceptViewModel.Users.Where(x => x.Id == item.AttendeeID).FirstOrDefault());
+                }
+            }
+            else
+            {
+                lanPartyConceptViewModel.Attendees = null;
+            }
             if (lanPartyConceptViewModel.LanPartyConcept == null)
             {
                 return NotFound();
@@ -263,7 +293,7 @@ namespace PlannerLanParty.Controllers
 
             foreach (var item in lanPartyConceptViewModel.ConceptDates)
             {
-               
+
                 _context.LanPartyDates.Remove(item);
             }
 

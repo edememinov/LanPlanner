@@ -21,6 +21,8 @@ namespace PlannerLanParty.Models
     public class LanPartyConcept : LanParty
     {
         public bool FinalCheck { get; set; }
+        [NotMapped]
+        public int AttendeeCount { get; set; }
     }
 
     public class LanPartyDate

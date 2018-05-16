@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PlannerLanParty.Models.LanPartyConcept>
+﻿@model PlannerLanParty.Models.ConceptLanViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -13,24 +13,45 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.LanPartyName)
+                Turn the concept into final
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LanPartyPlace)
+                @Html.DisplayNameFor(model => model.LanPartyConcept.LanPartyName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LanPartyAddress)
+                @Html.DisplayNameFor(model => model.LanPartyConcept.LanPartyPlace)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LanPartyConcept.LanPartyAddress)
+            </th>
+
+            <th>Amount of votes</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.ConceptLanParties)
         {
             if (item.FinalCheck == false)
             {
 
                 <tr>
+                    @{
+                        if (item.AttendeeCount > 1)
+                        {
+                            <td>
+                                <a class="make-final-button-index" asp-action="Finalise" asp-route-id="@item.LanPartyID">Finalise</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <a class="make-final-button-index-disabled" href="#" >Not enough attendees</a>
+                            </td>
+
+                        }
+
+                    }
                     <td>
                         @Html.DisplayFor(modelItem => item.LanPartyName)
                     </td>
@@ -40,12 +61,13 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.LanPartyAddress)
                     </td>
+                    <td>@item.AttendeeCount</td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.LanPartyID">Edit</a> |
                         <a asp-action="Details" asp-route-id="@item.LanPartyID">Details</a> |
                         <a asp-action="Vote" asp-route-id="@item.LanPartyID">Vote</a> |
-                        <a asp-action="Delete" asp-route-id="@item.LanPartyID">Delete</a>|
-                        <a asp-action="Finalise" asp-route-id="@item.LanPartyID">Finalise</a>
+                        <a asp-action="Delete" asp-route-id="@item.LanPartyID">Delete</a>
+
 
                     </td>
                 </tr>

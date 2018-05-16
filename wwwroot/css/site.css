@@ -61,55 +61,56 @@
 }
 
 .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a:hover {
-    color: #003366;
+    color: #990033 !important;
 }
 
 .dropdown-submenu {
     position: relative;
-    background: linear-gradient(to bottom right, #990033, #ff8080);
+    background: linear-gradient(to bottom right, #003366, #33ccff);
 }
 
 .dropdown-menu {
-    background: linear-gradient(to bottom right, #990033, #ff8080);
+    background: linear-gradient(to bottom right, #003366, #33ccff);
 }
 
-    .dropdown-menu:active {
-        color: #990033 !important;
-        background: linear-gradient(to bottom right, white, lightgrey) !important;
-    }
+.dropdown-menu:active {
+    color: #003366 !important;
+    background: linear-gradient(to bottom right, white, lightgrey) !important;
+}
 
-    .dropdown-menu .dropdown-submenu .submenu_a {
-        color: white !important;
-    }
+.dropdown-menu .dropdown-submenu .submenu_a {
+    color: white !important; 
+    /*swek*/
+}
 
 
-        .dropdown-menu .dropdown-submenu .submenu_a:hover {
-            color: #990033 !important;
-            background: linear-gradient(to bottom right, white, lightgrey) !important;
-        }
+.dropdown-menu .dropdown-submenu .submenu_a:hover {
+    color: #003366 !important;
+    background: linear-gradient(to bottom right, white, lightgrey) !important;
+}
 
-    .dropdown-menu .submenu_a {
-        color: white !important;
-    }
+.dropdown-menu .submenu_a {
+    color: white !important;
+}
 
-        .dropdown-menu .submenu_a:hover {
-            color: #990033 !important;
-            background: linear-gradient(to bottom right, white, lightgrey) !important;
-        }
+.dropdown-menu .submenu_a:hover {
+   color: #003366 !important;
+    background: linear-gradient(to bottom right, white, lightgrey) !important;
+}
 
-    .dropdown-menu .test {
-        color: white !important;
-    }
+.dropdown-menu .test {
+    color: white !important;
+}
 
-        .dropdown-menu .test:hover {
-            color: #990033 !important;
-            background: linear-gradient(to bottom right, white, lightgrey) !important;
-        }
+.dropdown-menu .test:hover {
+    color: #003366 !important;
+    background: linear-gradient(to bottom right, white, lightgrey) !important;
+}
 
-        .dropdown-menu .test:focus {
-            color: #990033 !important;
-            background: linear-gradient(to bottom right, white, lightgrey) !important;
-        }
+.dropdown-menu .test:focus {
+    color: #003366 !important;
+    background: linear-gradient(to bottom right, white, lightgrey) !important;
+}
 
 .dropdown-submenu .dropdown-menu {
     top: 0;
@@ -144,7 +145,7 @@
 
 .make-final-button {
     position: relative;
-    background: linear-gradient(to bottom right, #990033, #ff8080);
+    background: linear-gradient(to bottom right, #003366, #33ccff);
     float: right;
     border: none;
     font-size: 140%;
@@ -160,22 +161,102 @@
     text-decoration: none;
 }
 
-    .make-final-button:after {
-        content: "";
-        background: linear-gradient(to bottom right, #990033, #ff8080);
+.make-final-button:after {
+    content: "";
+    background: linear-gradient(to bottom right, #003366, #33ccff);
+    display: block;
+    position: absolute;
+    padding-top: 140%;
+    padding-left: 600%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 1.2s
+}
+
+.make-final-button-index:hover {
+    color: #003366 !important;
+    background: linear-gradient(to bottom right, white, lightgrey) !important;
+    text-decoration: none;
+}
+
+.make-final-button-index {
+    position: relative;
+    background: linear-gradient(to bottom right, #003366, #33ccff);
+    float: left;
+    border: none;
+    font-size: 105%;
+    color: #FFFFFF;
+    padding: 1%;
+    width: 40%;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.make-final-button-index:after {
+    content: "";
+    background: linear-gradient(to bottom right, #003366, #33ccff);
+    display: block;
+    position: absolute;
+    padding-top: 140%;
+    padding-left: 600%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 1.2s
+}
+
+.make-final-button-index-disabled:hover {
+    color: #003366 !important;
+    background: linear-gradient(to bottom right, white, lightgrey) !important;
+    text-decoration: none;
+}
+
+.make-final-button-index-disabled {
+    position: relative;
+    background: linear-gradient(to bottom right, darkred, red);
+    float: left;
+    border: none;
+    font-size: 105%;
+    color: #FFFFFF;
+    padding: 1%;
+    width: 40%;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
+.make-final-button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+    .col-container {
         display: block;
-        position: absolute;
-        padding-top: 140%;
-        padding-left: 600%;
-        margin-left: -20px !important;
-        margin-top: -120%;
-        opacity: 0;
-        transition: all 1.2s
+    }
+    .col {
+        flex: 0;
+        padding: 0;
+        margin-top: 1%;
+        width: 100%;
     }
 
-    .make-final-button:active:after {
-        padding: 0;
-        margin: 0;
-        opacity: 1;
-        transition: 0s
-    }
+}

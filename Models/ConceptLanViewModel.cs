@@ -11,6 +11,7 @@ namespace PlannerLanParty.Models
         public IEnumerable<LanPartyDate> ConceptDates { get; set; }
 
         public LanPartyConcept LanPartyConcept { get; set; }
+        public IEnumerable<LanPartyConcept> ConceptLanParties { get; set; }
         public List<ApplicationUser> Attendees { get; set; }
         public AttendeesDate AttendeesDate { get; set; }
         public IEnumerable<ApplicationUser> Users { get; set; }
