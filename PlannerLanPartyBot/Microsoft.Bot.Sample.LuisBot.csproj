@@ -195,7 +195,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PlannerLanParty\PlannerLanParty.csproj">
+    <ProjectReference Include="..\PlannerLanParty.csproj">
       <Project>{c364199f-44a2-427e-8e63-9de46ddae68e}</Project>
       <Name>PlannerLanParty</Name>
     </ProjectReference>
