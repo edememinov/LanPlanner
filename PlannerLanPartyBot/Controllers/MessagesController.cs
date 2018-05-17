@@ -22,7 +22,7 @@ namespace Microsoft.Bot.Sample.LuisBot
         public virtual async Task<HttpResponseMessage> Post([FromBody] Activity activity)
         {
             // check if activity is of type message
-            if (activity.GetActivityType() == ActivityTypes.Message && activity.Text.Equals.Contains("@LanBot")
+            if (activity.GetActivityType() == ActivityTypes.Message && activity.Text.Equals.Contains("@LanBot"))
             {
                 await Conversation.SendAsync(activity, () => new BasicLuisDialog());
             }
