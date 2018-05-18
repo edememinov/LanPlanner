@@ -37,7 +37,9 @@ namespace PlannerLanParty.Models
         public int LanPartyID { get; set; }
         [NotMapped]
         public bool CheckBoxAnswer { get; set; }
-        
+        [NotMapped]
+        public int VotedCount { get; set; }
+
 
     }
 
