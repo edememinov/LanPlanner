@@ -156,7 +156,7 @@ namespace PlannerLanParty.Controllers
                 }
                 )
                 .OrderBy(n => n.MetricCount);
-                var mostKey = dates.OrderBy(x => x.MetricCount).First().MetricName;
+                var mostKey = dates.OrderByDescending(x => x.MetricCount).First().MetricName;
                 var lanDateFinal = _context.LanPartyDates.Where(x => x.DateID == mostKey).First();
                 lanDateFinal.VotedCount = dates.First().MetricCount;
                 if (lanDateFinal == null)
