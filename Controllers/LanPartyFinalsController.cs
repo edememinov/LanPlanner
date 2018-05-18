@@ -181,7 +181,7 @@ namespace PlannerLanParty.Controllers
             }
             )
             .OrderBy(n => n.MetricCount);
-            var mostKey = dates.First().MetricName;
+            var mostKey = dates.OrderBy(x => x.MetricCount).First().MetricName;
             var lanDateFinal = _context.LanPartyDates.Where(x => x.DateID == mostKey).First();
             lanPartyFinal.LanPartyFinal.LanPartyFinalStartDate = lanDateFinal.DateTimeStart;
             lanPartyFinal.LanPartyFinal.LanPartyFinalFinishDate = lanDateFinal.DateTimeFinish;
