@@ -123,7 +123,7 @@ namespace PlannerLanParty.Controllers
         {
             if (command.Equals("next"))
             {
-                var item = _context.LanParties.OrderBy(x => x.LanPartyFinalStartDate).FirstOrDefault();
+                var item = _context.LanParties.OrderBy(x => x.LanPartyFinalStartDate).Where(x => x.LanPartyFinalStartDate > DateTime.Now || x.LanPartyFinalFinishDate > DateTime.Now).FirstOrDefault();
                 if (item == null)
                 {
                     return NotFound();

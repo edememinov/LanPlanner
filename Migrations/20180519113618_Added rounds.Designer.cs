@@ -12,9 +12,10 @@ using System;
 namespace PlannerLanParty.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180519113618_Added rounds")]
+    partial class Addedrounds
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -297,51 +298,13 @@ namespace PlannerLanParty.Migrations
                     b.Property<int>("RoundID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Description");
-
                     b.Property<int>("GameID");
 
                     b.Property<int>("TournamentID");
 
                     b.HasKey("RoundID");
 
-                    b.ToTable("Rounds");
-                });
-
-            modelBuilder.Entity("PlannerLanParty.Models.RoundParticipant", b =>
-                {
-                    b.Property<int>("RoundParticipantID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("ParticipantID");
-
-                    b.Property<int>("ParticipantScore");
-
-                    b.Property<int>("RoundID");
-
-                    b.HasKey("RoundParticipantID");
-
-                    b.ToTable("RoundParticipants");
-                });
-
-            modelBuilder.Entity("PlannerLanParty.Models.RoundWinners", b =>
-                {
-                    b.Property<int>("RoundWinnerID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("FifthPlace");
-
-                    b.Property<int>("FirstPlace");
-
-                    b.Property<int>("FourthPlace");
-
-                    b.Property<int>("SecondPlace");
-
-                    b.Property<int>("ThirdPlace");
-
-                    b.HasKey("RoundWinnerID");
-
-                    b.ToTable("RoundWinners");
+                    b.ToTable("Round");
                 });
 
             modelBuilder.Entity("PlannerLanParty.Models.Tournament", b =>

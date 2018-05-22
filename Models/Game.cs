@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace PlannerLanParty.Models
         public string GameName { get; set; }
 
         public GameType GameType { get; set; }
-        
+
     }
 
     public enum GameType

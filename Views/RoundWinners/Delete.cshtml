@@ -1,0 +1,51 @@
+﻿@model PlannerLanParty.Models.RoundWinners
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>RoundWinners</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstPlace)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstPlace)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondPlace)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SecondPlace)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ThirdPlace)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ThirdPlace)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FourthPlace)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FourthPlace)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FifthPlace)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FifthPlace)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="RoundWinnerID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
