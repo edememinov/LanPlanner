@@ -1,0 +1,48 @@
+﻿@model PlannerLanParty.Models.RoundWinners
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RoundWinners</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstPlace)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstPlace)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondPlace)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SecondPlace)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ThirdPlace)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ThirdPlace)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FourthPlace)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FourthPlace)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FifthPlace)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FifthPlace)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.RoundWinnerID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,50 @@
+﻿@model PlannerLanParty.Models.RoundWinners
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>RoundWinners</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FirstPlace" class="control-label"></label>
+                <input asp-for="FirstPlace" class="form-control" hidden="hidden"/>
+                <span asp-validation-for="FirstPlace" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondPlace" class="control-label"></label>
+                <input asp-for="SecondPlace" class="form-control" hidden="hidden"/>
+                <span asp-validation-for="SecondPlace" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThirdPlace" class="control-label"></label>
+                <input asp-for="ThirdPlace" class="form-control" />
+                <span asp-validation-for="ThirdPlace" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FourthPlace" class="control-label"></label>
+                <input asp-for="FourthPlace" class="form-control" hidden="hidden" />
+                <span asp-validation-for="FourthPlace" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FifthPlace" class="control-label"></label>
+                <input asp-for="FifthPlace" class="form-control" hidden="hidden"/>
+                <span asp-validation-for="FifthPlace" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

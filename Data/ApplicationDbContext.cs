@@ -33,6 +33,11 @@ namespace PlannerLanParty.Data
         public DbSet<TournamentGames> TournamentGames { get; set; }
         public DbSet<Tournament> Tournaments { get; set; }
         public DbSet<ParticipantsGames> ParticipantsGames { get; set; }
+        public DbSet<Round> Rounds { get; set; }
+        public DbSet<RoundParticipant> RoundParticipants { get; set; }
+        public DbSet<RoundWinners> RoundWinners { get; set; }
+
+
 
 
 

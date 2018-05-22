@@ -1,0 +1,140 @@
+﻿@model PlannerLanParty.Models.RoundsViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Round</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-md-12">
+                <div class="form-group col-md-10">
+                    <label asp-for="TournamentRounds[0].TournamentIDString" class="col-md-2 control-label"></label><br />
+                    <div class="col-md-12">
+                        <select asp-for="TournamentRounds[0].TournamentIDString" asp-items="@Model.TournamentList"></select>
+                    </div>
+                    <span asp-validation-for='TournamentRounds[0].TournamentIDString' class='text-danger' />
+                </div>
+                <fieldset class="form-add-set">
+                    <label for="sets" class="col-md-12 control-label">Games</label>
+                    <div class="col-md-12">
+                        <div class="concept-dates">
+                            <div class="add-sets">
+                                <div class="form-inline add-set">
+                                    <div>
+                                        <div class="form-group col-md-10">
+                                            <label asp-for="TournamentRounds[0].GameIDString" class="col-md-2 control-label"></label><br />
+                                            <div class="col-md-12">
+                                                <select asp-for="TournamentRounds[0].GameIDString" asp-items="@Model.GameList"></select>
+                                            </div>
+                                            <span asp-validation-for='TournamentRounds[0].GameIDString' class='text-danger' />
+                                        </div>
+                                        <div class="form-group col-md-2" style="margin-top:3%;">
+                                            <button class="btn btn-remove-set" data-toggle="tooltip" title="Remove Set"><span class="glyphicon glyphicon-minus"></span></button>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label asp-for="TournamentRounds[0].Recurring" class="control-label"></label>
+                                        <input asp-for="TournamentRounds[0].Recurring" class="form-control" />
+                                        <span asp-validation-for="TournamentRounds[0].Recurring" class="text-danger"></span>
+
+                                    </div>
+                                    
+                                    <div>
+                                        <label asp-for="TournamentRounds[0].RoundsAmount" class="control-label"></label>
+                                        <input asp-for="TournamentRounds[0].RoundsAmount" class="form-control" />
+                                        <span asp-validation-for="TournamentRounds[0].RoundsAmount" class="text-danger"></span>
+                                    </div>
+                                    <div>
+                                        <label asp-for="TournamentRounds[0].Description" class="control-label"></label>
+                                        <input asp-for="TournamentRounds[0].Description" class="form-control" />
+                                        <span asp-validation-for="TournamentRounds[0].Description" class="text-danger"></span>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <button class="btn btn-add-set" style="margin-top:5%;">Add Set</button>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<script type="text/javascript">
+        $(document).ready(function () {
+            $(".btn-add-set").click(function (e) {
+                var itemIndex = $(".add-set").length;
+                e.preventDefault();
+                var newItem = $("<div class='add-set'>" +
+                    "<div>" +
+                    "<div class='col-md-10'>" +
+                    "<label id='TournamentRounds_" + itemIndex + "__GameIDString' name='TournamentRounds[" + itemIndex + "].GameIDString' class='col-md-2 control-label'>Game</label>" +
+                    "<div class='col-md-12'>" +
+                    "<select id='TournamentRounds_" + itemIndex + "__GameIDString' name='TournamentRounds[" + itemIndex + "].GameIDString'>" +
+                    "@{ foreach (var game in Model.GameList ) {<option value='@game.Value'>@game.Text</option> <h1> @game.Value</h1> } }" +
+                    "</select>" +
+                    "</div>" +
+                    "<span id='TournamentRounds_" + itemIndex + "__GameIDString' name='TournamentRounds[" + itemIndex + "].GameIDString' class='text-danger' />" +
+                    "</div>" +
+                     "<div class='form-group col-md-10'>" +
+                    "<label id='TournamentRounds_" + itemIndex + "__Recurring' name='TournamentRounds[" + itemIndex + "].Recurring' class='col-md-2 control-label'>Recurring</label>" +
+                    "<div class='col-md-12'>" +
+                    "<input id='TournamentRounds_" + itemIndex + "__Recurring' name='TournamentRounds[" + itemIndex + "].Recurring' type='checkbox' class='form-control' style='width:15px;'>" +
+                    "</div>" +
+                    "<span id='TournamentRounds_" + itemIndex + "__Recurring' name='TournamentRounds[" + itemIndex + "].Recurring' class='text-danger' />" +
+                    "</div>" +
+                    "<div class='form-group col-md-10'>" +
+                    "<label id='TournamentRounds_" + itemIndex + "__RoundsAmount' name='TournamentRounds[" + itemIndex + "].RoundsAmount' class='col-md-2 control-label'>RoundsAmount</label>" +
+                    "<div class='col-md-12'>" +
+                    "<input id='TournamentRounds_" + itemIndex + "__RoundsAmount' name='TournamentRounds[" + itemIndex + "].RoundsAmount' type='number' class='form-control' style='width:200px;'>" +
+                    "</div>" +
+                    "<span id='TournamentRounds_" + itemIndex + "__RoundsAmount' name='TournamentRounds[" + itemIndex + "].RoundsAmount' class='text-danger' />" +
+                    "</div>" +
+                    "<div class='form-group col-md-10'>" +
+                    "<label id='TournamentRounds_" + itemIndex + "__Description' name='TournamentRounds[" + itemIndex + "].Description' class='col-md-2 control-label'>Description</label>" +
+                    "<div class='col-md-12'>" +
+                    "<input id='TournamentRounds_" + itemIndex + "__Description' name='TournamentRounds[" + itemIndex + "].Description' type='text' class='form-control' style='width:200px;'>" +
+                    "</div>" +
+                    "<span id='TournamentRounds_" + itemIndex + "__Description' name='TournamentRounds[" + itemIndex + "].Description' class='text-danger' />" +
+                    "</div>" +
+                    "<div class='form-group col-md-2'>" +
+                    "<button class='btn btn-remove-set' type='button' data-toggle='tooltip' title='Remove Set'><span class='glyphicon glyphicon-minus'></span></button>" +
+                    "</div>");
+                $('.add-set .btn-remove-set').show();
+                $(".add-sets").append(newItem);
+            });
+
+            $(document).on('click', '.add-set .btn-remove-set', function (e) {
+                e.preventDefault();
+                $(this).parents('.add-set').remove();
+
+                removeButton();
+            });
+
+
+            function removeButton() {
+                if ($('.add-set').length == 1) {
+                    $('.add-set .btn-remove-set').hide();
+                }
+            }
+
+
+
+        });
+</script>

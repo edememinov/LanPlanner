@@ -1,0 +1,133 @@
+﻿@model PlannerLanParty.Models.RoundsViewModel
+
+@{
+    ViewData["Title"] = "SetWinners";
+}
+
+<h2>SetWinners</h2>
+
+<h4>RoundWinners</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="SetWinners">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <ul>
+                <li style="list-style-type: none;">
+                    <h2 style="text-align:center">First</h2>
+                    <input asp-for="RoundWinners.FirstPlaceString" onclick="clearText(event)" class="form-control" />
+                </li>
+                <li style="list-style-type: none;">
+                    <h2 style="text-align:center">Second</h2>
+                    <input asp-for="RoundWinners.ThirdPlaceString" onclick="clearText(event)" ondrop="drop(event)" ondragover="allowDrop(event)" class="form-control" />
+                </li>
+                <li style="list-style-type: none;">
+                    <h2 style="text-align:center">Third</h2>
+                    <input asp-for="RoundWinners.SecondPlaceString" onclick="clearText(event)" ondrop="drop(event)" class="form-control" />
+                </li>
+                <li style="list-style-type: none;">
+                    <h2 style="text-align:center">Fourth</h2>
+                    <input asp-for="RoundWinners.FourthPlaceString" onclick="clearText(event)" ondrop="drop(event)" ondragover="allowDrop(event)" class="form-control" />
+                </li>
+                <li style="list-style-type: none;">
+                    <h2 style="text-align:center">Fifth</h2>
+                    <input asp-for="RoundWinners.FifthPlaceString" onclick="clearText(event)" ondrop="drop(event)" ondragover="allowDrop(event)" class="form-control" />
+                </li>
+            </ul>
+        </form>
+    </div>
+    <div class="col-md-6" style="float:right; margin-top:1%;">
+        <h2 style="text-align:right;">All the participants:</h2>
+        @{
+            if (Model.Participants != null)
+            {
+                var x = 0;
+                foreach (var participant in Model.Participants)
+                {
+                    var id = "email_" + x;
+                    <div class="participant" style="margin-top:5%;">
+                        <ul id="participantlist">
+                            <li style="list-style-type: none; text-align:right;"><h4 id="@id" onclick="selectText('@id')">@participant.Email</h4></li>
+                        </ul>
+                    </div>
+                    x++;
+                }
+
+            }
+
+        }
+    </div>
+    <div class="col-md-12 form-group">
+        <input type="submit" value="Create" class="btn btn-default" />
+    </div>
+
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<script type="text/javascript">
+
+    function SelectAll(id) {
+        document.getElementById(id).focus();
+        document.getElementById(id).select();
+    }
+
+    function changeDraggedText(event) {
+        if (event.dataTransfer) {
+            // Note: textData is empty here for Safari and Google Chrome :(
+            var textData = event.dataTransfer.getData("Text");
+            var newText = "..." //Modify the data being dragged BEFORE it is dropped.
+            event.dataTransfer.setData(format, newText);
+        }
+    }
+
+    //Access the text when the `drag` ends.
+    function getDraggedText(event) {
+        if (event.dataTransfer) {
+            var format = "Text";
+            var textData = event.dataTransfer.getData(format);
+            if (!textData) {
+                // ... There is no text being dragged.
+            } else {
+                // ... Do what you will with the textData.
+            }
+        } else {
+            // ... Some (less modern) browsers don't support dataTransfer objects.
+        }
+
+        // Use stopPropagation and cancelBubble to prevent the browser
+        // from performing the default `drop` action for this element.
+        if (event.stopPropagation) {
+            event.stopPropagation();
+        } else {
+            event.cancelBubble = true;
+        }
+        return false;
+    }
+
+    function selectText(containerid) {
+        if (document.selection) { // IE
+            var range = document.body.createTextRange();
+            range.moveToElementText(document.getElementById(containerid));
+            range.select();
+        } else if (window.getSelection) {
+            var range = document.createRange();
+            range.selectNode(document.getElementById(containerid));
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+        }
+    }
+
+
+    $('input:text').focus(
+        function (e) {
+
+
+            $(this).val('');
+
+        });
+</script>
+
